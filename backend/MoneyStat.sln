@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyStat.WebApi", "MoneyStat.WebApi", "{407B4AC8-48DD-4C59-BA95-4F4C1932D204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.WebApi.Api", "MoneyStat.WebApi\MoneyStat.WebApi.Api\MoneyStat.WebApi.Api.csproj", "{D3D81341-A508-4843-B3D4-02773B2BAAAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3D81341-A508-4843-B3D4-02773B2BAAAD} = {407B4AC8-48DD-4C59-BA95-4F4C1932D204}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3D81341-A508-4843-B3D4-02773B2BAAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D81341-A508-4843-B3D4-02773B2BAAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D81341-A508-4843-B3D4-02773B2BAAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D81341-A508-4843-B3D4-02773B2BAAAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
