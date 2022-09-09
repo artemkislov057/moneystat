@@ -1,6 +1,6 @@
 import React from "react";
-import './leftMenu.css';
 import { MenuItem } from "./menuItem";
+import './leftMenu.css';
 
 type TProps = {
     onClickSummary: () => void
