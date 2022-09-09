@@ -5,6 +5,5 @@ import './startPage.css';
 export const StartPage:React.FC = React.memo(() => {
     return <div className="start-page-container">
         start
-        {/* <TestDiagram /> */}
     </div>
 })

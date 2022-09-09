@@ -7,7 +7,11 @@ import { StartPage } from './pages/startPage/startPage';
 import './App.css';
 
 function App() {
-  const naviagtor = useNavigate();  
+  const naviagtor = useNavigate();
+
+  useEffect(() => {
+    naviagtor('/summary')
+  }, [])
   return (
     <div className="App">
         <Routes>
