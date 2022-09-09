@@ -2,24 +2,31 @@ import React from "react";
 import './leftMenu.css';
 import { MenuItem } from "./menuItem";
 
-export const LeftMenu:React.FC = () => {
+type TProps = {
+    onClickSummary: () => void
+    onClickTransactions: () => void
+    onClickGoals: () => void
+    activeButton: 'summary' | 'transactions' | 'goals'
+}
+
+export const LeftMenu:React.FC<TProps> = (props) => {
     return <div className="left-menu-container">
         <span className="left-menu-title">moneystat</span>
         <div className="left-menu-category">
             <MenuItem 
-                isActive={true}
+                isActive={props.activeButton === 'summary'}
                 type={'summary'}
-                onClick={() => {}}
+                onClick={props.onClickSummary}
             />
             <MenuItem 
-                isActive={false}
+                isActive={props.activeButton === 'transactions'}
                 type={'transactions'}
-                onClick={() => {}}
+                onClick={props.onClickTransactions}
             />
             <MenuItem 
-                isActive={false}
+                isActive={props.activeButton === 'goals'}
                 type={'goals'}
-                onClick={() => {}}
+                onClick={props.onClickGoals}
             />
         </div>
     </div>
