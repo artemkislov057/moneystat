@@ -1,0 +1,13 @@
+.summary-expenses-header {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    align-items: center;
+}
+
+.summary-expenses-header-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    color: #464C55;
+}

@@ -13,3 +13,8 @@
     width: 100%;
     gap: 20px;
 }
+
+.main-page-summary-expenses-container {
+    display: flex;
+    gap: 18px;
+}
