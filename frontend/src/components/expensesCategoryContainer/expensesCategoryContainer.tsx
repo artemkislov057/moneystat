@@ -6,47 +6,50 @@ import './expensesCategoryContainer.css';
 
 export const ExpensesCategoryContainer:React.FC = () => {
     return <div className="expenses-category-container">
-        <SummaryExpensesHeader 
-            title="Категории"
-        />
-        <div className="expenses-category-container-list">
-            <CategoryListItem 
-                type="auto"
-                price="1523"
-                typePrice="expenses"
+        <div className="expenses-category-header-container">
+            <SummaryExpensesHeader 
+                title="Категории"
             />
-            <DividingLine />
-            <CategoryListItem 
-                type="food"
-                price="1523"
-                typePrice="expenses"
-            />
-            <DividingLine />
-            <CategoryListItem 
-                type="connections"
-                price="1523"
-                typePrice="expenses"
-            />
-            <DividingLine />
-            <CategoryListItem 
-                type="health"
-                price="1523"
-                typePrice="expenses"
-            />
-            <DividingLine />
-            <CategoryListItem 
-                type="transport"
-                price="1523"
-                typePrice="expenses"
-            />
-            <DividingLine />
-            <CategoryListItem 
-                type="entertainment"
-                price="1523"
-                typePrice="expenses"
-            />
-            <DividingLine />
-            
+        </div>        
+        <div className="expenses-category-container-list-container">
+            <div className="expenses-category-container-list">
+                <CategoryListItem 
+                    type="auto"
+                    price="1523"
+                    typePrice="expenses"
+                />
+                <DividingLine />
+                <CategoryListItem 
+                    type="food"
+                    price="1523"
+                    typePrice="expenses"
+                />
+                <DividingLine />
+                <CategoryListItem 
+                    type="connections"
+                    price="1523"
+                    typePrice="expenses"
+                />
+                <DividingLine />
+                <CategoryListItem 
+                    type="health"
+                    price="1523"
+                    typePrice="expenses"
+                />
+                <DividingLine />
+                <CategoryListItem 
+                    type="transport"
+                    price="1523"
+                    typePrice="expenses"
+                />
+                <DividingLine />
+                <CategoryListItem 
+                    type="entertainment"
+                    price="1523"
+                    typePrice="expenses"
+                />
+                <DividingLine />
+            </div>
         </div>
     </div>
 }
