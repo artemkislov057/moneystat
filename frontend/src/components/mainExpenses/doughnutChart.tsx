@@ -49,7 +49,7 @@ export const DoughnutChart:React.FC = () => {
                             height = chart.height,
                             ctx = chart.ctx;
                             ctx.restore();
-                            var fontSize = (height / 160).toFixed(2);
+                            var fontSize = (height / 120).toFixed(2);
                             ctx.font = fontSize + "em sans-serif";
                             ctx.textBaseline = "top";
                             let sum = 0;

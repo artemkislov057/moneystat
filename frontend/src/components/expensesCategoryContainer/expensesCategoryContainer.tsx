@@ -1,8 +1,8 @@
 import React from "react";
 import { DividingLine } from "../dividingLine/dividingLine";
+import { CategoryListItem } from "../expensesCategoryListItem/expensesCategoryListItem";
 import { SummaryExpensesHeader } from "../summaryExpensesHeader/summaryExpensesHeader";
 import './expensesCategoryContainer.css';
-import { CategoryListItem } from "./expensesCategoryContainerListItem";
 
 export const ExpensesCategoryContainer:React.FC = () => {
     return <div className="expenses-category-container">
@@ -13,31 +13,37 @@ export const ExpensesCategoryContainer:React.FC = () => {
             <CategoryListItem 
                 type="auto"
                 price="1523"
+                typePrice="expenses"
             />
             <DividingLine />
             <CategoryListItem 
                 type="food"
                 price="1523"
+                typePrice="expenses"
             />
             <DividingLine />
             <CategoryListItem 
                 type="connections"
                 price="1523"
+                typePrice="expenses"
             />
             <DividingLine />
             <CategoryListItem 
                 type="health"
                 price="1523"
+                typePrice="expenses"
             />
             <DividingLine />
             <CategoryListItem 
                 type="transport"
                 price="1523"
+                typePrice="expenses"
             />
             <DividingLine />
             <CategoryListItem 
                 type="entertainment"
                 price="1523"
+                typePrice="expenses"
             />
             <DividingLine />
             
