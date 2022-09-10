@@ -24,44 +24,67 @@ const options = {
 const data: ChartData<'bar'> = {
     labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
     datasets: [
-      {
+      {        
         label: 'Доходы',
-        data: [10,15],
+        data: [10,15,11,100,123,1,1,1,2,3,48,4,5,6,5,6],
         backgroundColor: '#01D9A0',
-        barPercentage: .25        
+        barPercentage: .35,
+        borderRadius: 100,
       },
       {
         label: 'Расходы',
-        data: [20,5],
+        data: [20,5,100,123,1,1,1,2,3,48,4,5,6,5,6],
         backgroundColor: '#4851FB',
-        barPercentage: .25
+        barPercentage: .35,
+        borderRadius: 100
       },
     ],
   };
 
 export const BarChart:React.FC<TProps> = React.memo((props) => {
     return <div className="bar-chart-container">
-        <Bar 
-            options={{
-                plugins: {
-                    legend: {
-                        position: 'top' as const,
-                    },        
-                },
-                maintainAspectRatio: false,
-                scales: {
-                    screenX: {
-                        display: false
-                    }
-                }
-            }}
-            style={{
-                background: '#FFFFFF',
-                padding: '0 30px 10px 20px',
-                height: '180px !important',
-                boxSizing: 'border-box'
-            }}
-            data={data}
-        />
+        <div className="bar-chart-chart">
+            <Bar 
+                options={{
+                    plugins: {
+                        legend: {
+                            display: false,
+                            position: 'top' as const,
+                        },        
+                    },
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    
+                }}            
+                style={{
+                    // background: '#FFFFFF',
+                    // padding: '0 30px 10px 20px',
+                    // height: '180px',
+                    // boxSizing: 'border-box'
+                }}
+                data={data}
+            />
+        </div>        
     </div>
 })

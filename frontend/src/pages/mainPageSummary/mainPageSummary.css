@@ -3,8 +3,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 20px;
     box-sizing: border-box;
-    padding: 70px 40px;
+    padding: 40px 70px;
 }
 
 .main-page-summary-money-summary {
