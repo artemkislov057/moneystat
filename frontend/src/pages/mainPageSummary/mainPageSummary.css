@@ -2,4 +2,12 @@
     height: 100%;
     width: 100%;
     display: flex;
+    box-sizing: border-box;
+    padding: 70px 40px;
+}
+
+.main-page-summary-money-summary {
+    display: flex;
+    width: 100%;
+    gap: 20px;
 }
