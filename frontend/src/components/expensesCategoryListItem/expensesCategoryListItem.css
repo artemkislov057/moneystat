@@ -21,16 +21,44 @@
     background-size: 100% 100%;
 }
 
+.category-list-item-name-title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .category-list-item-name-title {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
 }
 
+.category-list-item-name-date {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #969CA4;
+}
+
+.category-list-item-price {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .category-list-item-price-value {
     font-weight: 600;
     font-size: 20px;
     line-height: 20px;
+}
+
+.category-list-item-price-delete-button {
+    width: 15px;
+    height: 16px;
+    border: none;
+    background-color: transparent;
+    background: url('icons/deleteIcon.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
 }
 
 .category-list-item-name-icon.food {
