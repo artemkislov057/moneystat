@@ -1,5 +1,6 @@
 import React from "react";
 import { BarChart } from "../../components/barChart/barChart";
+import { ExpensesCategoryContainer } from "../../components/expensesCategoryContainer/expensesCategoryContainer";
 import { InfoSummaryContainer } from "../../components/infoSummaryContainer/infoSummaryContainer";
 import { MainExpenses } from "../../components/mainExpenses/mainExpenses";
 import './mainPageSummary.css';
@@ -30,7 +31,7 @@ export const MainPageSummary:React.FC = () => {
         </div>
         <div className="main-page-summary-expenses-container">
             <MainExpenses />
-            <MainExpenses />
+            <ExpensesCategoryContainer />
         </div>
     </div>
 }

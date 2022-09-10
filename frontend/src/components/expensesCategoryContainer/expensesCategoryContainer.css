@@ -1,0 +1,87 @@
+.expenses-category-container {
+    width: 100%;
+    /* height: 400px; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px 54px;
+    background: #FFFFFF;
+    box-shadow: 10px 20px 20px rgba(82, 123, 185, 0.1);
+    border-radius: 10px;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.expenses-category-container-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.category-list-item {
+    display: flex;
+    padding: 20px 18px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: #464C55;
+}
+
+.category-list-item-name-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.category-list-item-name-icon {
+    width: 35px;
+    height: 38px;
+    background-size: 100% 100%;
+}
+
+.category-list-item-name-title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.category-list-item-price-value {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.category-list-item-name-icon.food {
+    background: url('icons/foodIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.clothes {
+    background: url('icons/clothesIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.auto {
+    background: url('icons/autoIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.connections {
+    background: url('icons/connectionsIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.entertainment {
+    background: url('icons/entertainmentIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.transport {
+    background: url('icons/transportIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.health {
+    background: url('icons/healthIcon.svg') 50% 50% no-repeat;
+}

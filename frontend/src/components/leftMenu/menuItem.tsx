@@ -1,5 +1,5 @@
 import React from "react";
-import { SectionType } from "../../types/sectionType";
+import { SectionType } from "../../types/types";
 
 type TProps = {
     isActive: boolean

@@ -5,7 +5,7 @@ import { MainPageSummary } from './pages/mainPageSummary/mainPageSummary';
 import { MainPageTransactions } from './pages/mainPageTransactions/mainPageTransactions';
 import { StartPage } from './pages/startPage/startPage';
 import { LeftMenu } from './components/leftMenu/leftMenu';
-import { SectionType } from './types/sectionType';
+import { SectionType } from './types/types';
 import './App.css';
 
 function App() {
