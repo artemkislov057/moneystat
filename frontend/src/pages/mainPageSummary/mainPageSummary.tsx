@@ -1,4 +1,5 @@
 import React from "react";
+import { BarChart } from "../../components/barChart/barChart";
 import { InfoSummaryContainer } from "../../components/infoSummaryContainer/infoSummaryContainer";
 import './mainPageSummary.css';
 
@@ -23,6 +24,7 @@ export const MainPageSummary:React.FC = () => {
                 onClick={() => console.log('add income')}
             />
         </div>
+        <BarChart />
         
     </div>
 }
