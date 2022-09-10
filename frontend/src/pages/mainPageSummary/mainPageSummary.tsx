@@ -9,6 +9,7 @@ export const MainPageSummary:React.FC = () => {
                 title="Расходы"
                 type="button expenses"
                 value="7,534.55 ₽"
+                onClick={() => console.log('add expenses')}
             />
             <InfoSummaryContainer 
                 title="Баланс"
@@ -19,6 +20,7 @@ export const MainPageSummary:React.FC = () => {
                 title="Доходы"
                 type="button income"
                 value="22,562.55 ₽"
+                onClick={() => console.log('add income')}
             />
         </div>
         

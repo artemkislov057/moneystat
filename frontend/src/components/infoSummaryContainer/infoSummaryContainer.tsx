@@ -5,10 +5,18 @@ type TProps = {
     type: 'button expenses' | 'button income' | 'info'
     title: string
     value: string
+    onClick?: () => void
 }
 
 export const InfoSummaryContainer:React.FC<TProps> = React.memo((props) => {
-    return <div className={`info-summary-container ${props.type}`}>
+    return <div 
+        className={`info-summary-container ${props.type}`}
+        onClick={() => {
+            if(props.onClick) {
+                props.onClick();
+            }
+        }}
+    >
         {
             props.type !== 'info' &&
             <span className={`info-summary-container-icon ${props.type}`}></span>
