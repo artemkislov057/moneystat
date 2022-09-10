@@ -25,7 +25,9 @@ export const MainPageSummary:React.FC = () => {
                 onClick={() => console.log('add income')}
             />
         </div>
-        <BarChart />
+        <div className="main-page-summary-chart-summary">
+            <BarChart />
+        </div>
         <div className="main-page-summary-expenses-container">
             <MainExpenses />
             <MainExpenses />

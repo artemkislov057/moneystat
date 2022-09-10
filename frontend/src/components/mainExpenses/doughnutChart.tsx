@@ -25,7 +25,7 @@ export const DoughnutChart:React.FC = () => {
 
     return <div 
         className="expenses-doughnut-diagram" 
-        // style={{width: 250, height: 250}}
+        style={{width: 250, height: 250}}
     >
         <Doughnut 
             data={
@@ -54,7 +54,6 @@ export const DoughnutChart:React.FC = () => {
                             ctx.textBaseline = "top";
                             let sum = 0;
                             for(let i = 0; i < chart.data.datasets[0].data.length; i++) {
-                                console.log(chart.data.datasets[0].data[i])
                                 if(!chart.legend.legendItems[i].hidden) {
                                     sum += chart.data.datasets[0].data[i] as number;
                                 }
