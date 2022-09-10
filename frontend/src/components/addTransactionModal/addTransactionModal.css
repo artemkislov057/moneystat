@@ -1,0 +1,44 @@
+.add-transaction-modal-content-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 30px 24px;
+    width: 350px;
+    align-items: center;
+    gap: 30px;
+
+    background: #FFFFFF;
+    box-shadow: 10px 20px 15px rgba(72, 81, 251, 0.2);
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+}
+
+.add-transaction-modal-content-header {
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-transaction-modal-content-header-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #464C55;
+}
+
+.add-transaction-modal-content-header-close-button {
+    position: absolute;
+    right: 0;
+    width: 18px;
+    height: 18px;
+}
+
+.add-transaction-modal-content-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
