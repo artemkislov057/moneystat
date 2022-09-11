@@ -1,6 +1,8 @@
-import { Backdrop, Box, Button, Fade, FormControl, FormGroup, InputLabel, ListSubheader, MenuItem, Modal, Select, SxProps, TextField, Theme, Typography } from "@mui/material";
-import { DatePicker, DesktopDatePicker } from "@mui/x-date-pickers";
+import { Box, Button, Fade, FormControl, InputAdornment, InputLabel, ListSubheader, MenuItem, Modal, Select, SxProps, TextField, Theme } from "@mui/material";
+import { DesktopDatePicker } from "@mui/x-date-pickers";
 import React, { useState } from "react";
+import { expensesCategory } from "../../constants/expensesCategory";
+import { incomeCategory } from "../../constants/incomeCategoryes";
 import { ExpensesCategoryType, IncomeCategoryType } from "../../types/types";
 import { TransactionCategorySelectItem } from "../transactionCategorySelectItem/transactionCategorySelectItem";
 import './addTransactionModal.css';
@@ -9,11 +11,8 @@ type TProps = {
     type: 'income' | 'expenses'
     isOpen: boolean,
     closeModal: () => void
-    // subCategory: any
+    // subCategory: any - get from db
 }
-
-const incomeCategory = ['salary', 'investments'];
-const expensesCategory = ['food', 'clothes', 'auto', 'connections', 'entertainment', 'transport', 'house', 'health']
 
 const categoryItems = {
     income: incomeCategory,
@@ -111,8 +110,7 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
                     <Button
                         variant="contained"
                         size="large"
-                        type="submit"
-                        
+                        type="submit"                        
                     >
                         Добавить
                     </Button>

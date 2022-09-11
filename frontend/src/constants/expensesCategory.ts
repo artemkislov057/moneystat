@@ -1,0 +1,1 @@
+export const expensesCategory = ['food', 'clothes', 'auto', 'connections', 'entertainment', 'transport', 'house', 'health']
