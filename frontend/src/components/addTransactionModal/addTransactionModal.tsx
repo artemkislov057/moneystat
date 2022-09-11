@@ -1,5 +1,6 @@
 import { Backdrop, Box, Button, Fade, FormControl, InputLabel, ListSubheader, MenuItem, Modal, Select, SxProps, TextField, Theme, Typography } from "@mui/material";
-import React from "react";
+import { DatePicker, DesktopDatePicker } from "@mui/x-date-pickers";
+import React, { useState } from "react";
 import { TransactionCategorySelectItem } from "../transactionCategorySelectItem/transactionCategorySelectItem";
 import './addTransactionModal.css';
 
@@ -22,6 +23,8 @@ const style: SxProps<Theme> = {
 };
 
 export const AddTransactionModal:React.FC<TProps> = (props) => {
+    const [currentDate, setCurrentDate] = useState(Date.now());
+
     return <div className="add-transaction-modal-container">
         <Modal
             open={props.isOpen}            
@@ -92,6 +95,13 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
                                 <MenuItem value={4}>Кросовки</MenuItem>
                             </Select>
                         </FormControl>
+                        <DesktopDatePicker
+                            label="Date desktop"
+                            inputFormat="DD/MM/YYYY"
+                            value={currentDate}
+                            onChange={(e) => {setCurrentDate(e)}}
+                            renderInput={(params) => <TextField {...params} />}                            
+                        />
                     </div>
                     <Button
                         variant="contained"
