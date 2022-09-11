@@ -49,6 +49,12 @@ export const ExpensesCategoryContainer:React.FC = () => {
                     typePrice="expenses"
                 />
                 <DividingLine />
+                <CategoryListItem 
+                    type="house"
+                    price="1523"
+                    typePrice="expenses"
+                />
+                <DividingLine />
             </div>
         </div>
     </div>

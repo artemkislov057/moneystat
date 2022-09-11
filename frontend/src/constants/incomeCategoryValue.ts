@@ -1,4 +1,4 @@
 export const IncomeCategoryValue = {
-    salary: 'Зарплата',
-    investments: 'Инвестиции'
+    'salary': 'Зарплата',
+    'investments': 'Инвестиции'
 }

@@ -7,10 +7,12 @@ import { MainExpenses } from "../../components/mainExpenses/mainExpenses";
 import './mainPageSummary.css';
 
 export const MainPageSummary:React.FC = () => {
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModalExpenses, setShowModalExpenses] = useState<boolean>(false);
+    const [showModalIncome, setShowModalIncome] = useState<boolean>(false);
 
     function closeModal() {
-        setShowModal(false);
+        setShowModalExpenses(false);
+        setShowModalIncome(false);
     }
 
     return <div className="main-page-summary-container">
@@ -19,7 +21,7 @@ export const MainPageSummary:React.FC = () => {
                 title="Расходы"
                 type="button expenses"
                 value="7,534.55 ₽"
-                onClick={() => setShowModal(true)}
+                onClick={() => setShowModalExpenses(true)}
             />
             <InfoSummaryContainer 
                 title="Баланс"
@@ -30,7 +32,7 @@ export const MainPageSummary:React.FC = () => {
                 title="Доходы"
                 type="button income"
                 value="22,562.55 ₽"
-                onClick={() => console.log('add income')}
+                onClick={() => setShowModalIncome(true)}
             />
         </div>
         <div className="main-page-summary-chart-summary">
@@ -41,9 +43,14 @@ export const MainPageSummary:React.FC = () => {
             <ExpensesCategoryContainer />
         </div>
         <AddTransactionModal
-            isOpen={showModal}
+            isOpen={showModalExpenses}
             closeModal={closeModal}
-            title={'Доходы'}
+            type={"expenses"}
+        />
+        <AddTransactionModal
+            isOpen={showModalIncome}
+            closeModal={closeModal}
+            type={"income"}
         />
     </div>
 }

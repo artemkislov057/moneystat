@@ -1,15 +1,28 @@
-import { Backdrop, Box, Button, Fade, FormControl, InputLabel, ListSubheader, MenuItem, Modal, Select, SxProps, TextField, Theme, Typography } from "@mui/material";
+import { Backdrop, Box, Button, Fade, FormControl, FormGroup, InputLabel, ListSubheader, MenuItem, Modal, Select, SxProps, TextField, Theme, Typography } from "@mui/material";
 import { DatePicker, DesktopDatePicker } from "@mui/x-date-pickers";
 import React, { useState } from "react";
+import { ExpensesCategoryType, IncomeCategoryType } from "../../types/types";
 import { TransactionCategorySelectItem } from "../transactionCategorySelectItem/transactionCategorySelectItem";
 import './addTransactionModal.css';
 
-import test from './icons/closeModalIcon.svg';
-
 type TProps = {
-    title: string
+    type: 'income' | 'expenses'
     isOpen: boolean,
     closeModal: () => void
+    // subCategory: any
+}
+
+const incomeCategory = ['salary', 'investments'];
+const expensesCategory = ['food', 'clothes', 'auto', 'connections', 'entertainment', 'transport', 'house', 'health']
+
+const categoryItems = {
+    income: incomeCategory,
+    expenses: expensesCategory
+}
+
+const title = {
+    income: 'Доходы',
+    expenses: 'Расходы'
 }
 
 const style: SxProps<Theme> = {
@@ -35,78 +48,71 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
             <Box sx={style}>
                 <div className="add-transaction-modal-content-container">
                     <div className="add-transaction-modal-content-header">
-                        <span className="add-transaction-modal-content-header-title">{props.title}</span>
+                        <span className="add-transaction-modal-content-header-title">{title[props.type]}</span>
                         <button className="add-transaction-modal-content-header-close-button" onClick={() => props.closeModal()}></button>
                     </div>
-                    <div className="add-transaction-modal-content-inputs">
-                        <TextField 
-                            label={'Введите сумму'}
-                            fullWidth
-                            required
-                            type={'number'}
-                        />
-                        <FormControl fullWidth>
-                            <InputLabel id="category-select">Категория</InputLabel>
-                            <Select
-                                labelId="category-select"
-                                label='Категория'
+                    <div className="add-transaction-modal-content-inputs">                        
+                            <TextField 
+                                label={'Введите сумму'}
                                 fullWidth
-                            >
-                                <MenuItem value={'food'}>
-                                    <TransactionCategorySelectItem 
-                                        type="food"
-                                    />
-                                </MenuItem>
-                                <MenuItem value={'clothes'}>
-                                    <TransactionCategorySelectItem 
-                                        type="clothes"
-                                    />
-                                </MenuItem>
-                                <MenuItem value={'auto'}>
-                                    <TransactionCategorySelectItem 
-                                        type="auto"
-                                    />
-                                </MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl fullWidth>
-                            <InputLabel id="subcategory-select">Подкатегория</InputLabel>
-                            <Select
-                                labelId="subcategory-select"
-                                label='Подкатегория'
-                                fullWidth
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <ListSubheader>
-                                    <TransactionCategorySelectItem 
-                                        type="food"
-                                    />
-                                </ListSubheader>
-                                <MenuItem value={'products'}>Пельмени</MenuItem>
-                                <MenuItem value={'products'}>Макароны</MenuItem>
-                                <ListSubheader>
-                                    <TransactionCategorySelectItem 
-                                        type="clothes"
-                                    />
-                                </ListSubheader>
-                                <MenuItem value={3}>Футболки</MenuItem>
-                                <MenuItem value={4}>Кросовки</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <DesktopDatePicker
-                            label="Date desktop"
-                            inputFormat="DD/MM/YYYY"
-                            value={currentDate}
-                            onChange={(e) => {setCurrentDate(e)}}
-                            renderInput={(params) => <TextField {...params} />}                            
-                        />
+                                required
+                                type={'number'}
+                            />
+                            <FormControl fullWidth>
+                                <InputLabel id="category-select">Категория</InputLabel>
+                                <Select
+                                    labelId="category-select"
+                                    label='Категория'
+                                    fullWidth
+                                >
+                                    {categoryItems[props.type].map((data) => {
+                                        return <MenuItem value={data} key={data}>
+                                            <TransactionCategorySelectItem 
+                                                type={data as ExpensesCategoryType | IncomeCategoryType}
+                                            />
+                                        </MenuItem>
+                                    })}
+                                </Select>
+                            </FormControl>
+                            <FormControl fullWidth>
+                                <InputLabel id="subcategory-select">Подкатегория</InputLabel>
+                                <Select
+                                    labelId="subcategory-select"
+                                    label='Подкатегория'
+                                    fullWidth
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <ListSubheader>
+                                        <TransactionCategorySelectItem 
+                                            type="food"
+                                        />
+                                    </ListSubheader>
+                                    <MenuItem value={'products'}>Пельмени</MenuItem>
+                                    <MenuItem value={'products'}>Макароны</MenuItem>
+                                    <ListSubheader>
+                                        <TransactionCategorySelectItem 
+                                            type="clothes"
+                                        />
+                                    </ListSubheader>
+                                    <MenuItem value={3}>Футболки</MenuItem>
+                                    <MenuItem value={4}>Кросовки</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <DesktopDatePicker
+                                label="Дата"
+                                inputFormat="DD/MM/YYYY"
+                                value={currentDate}
+                                onChange={(e) => {setCurrentDate(e)}}
+                                renderInput={(params) => <TextField {...params} />}                            
+                            />
                     </div>
                     <Button
                         variant="contained"
-                        // fullWidth
                         size="large"
+                        type="submit"
+                        
                     >
                         Добавить
                     </Button>

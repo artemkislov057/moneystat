@@ -64,6 +64,10 @@
     background: url('icons/investmentsIcon.svg') 50% 50% no-repeat;
 }
 
+.transaction-category-select-icon.house {
+    background: url('icons/houseIcon.svg') 50% 50% no-repeat;
+}
+
 .transaction-category-select-icon.auto,
 .transaction-category-select-icon.health,
 .transaction-category-select-icon.transport,
@@ -72,6 +76,7 @@
 .transaction-category-select-icon.clothes,
 .transaction-category-select-icon.food,
 .transaction-category-select-icon.salary,
-.transaction-category-select-icon.investments {
+.transaction-category-select-icon.investments,
+.transaction-category-select-icon.house {
     background-size: 100% 100%;
 }

@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-// import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 

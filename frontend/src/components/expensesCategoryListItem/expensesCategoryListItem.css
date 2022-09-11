@@ -89,12 +89,17 @@
     background: url('icons/healtsIcon.svg') 50% 50% no-repeat;
 }
 
+.category-list-item-name-icon.house {
+    background: url('icons/houseIcon.svg') 50% 50% no-repeat;
+}
+
 .category-list-item-name-icon.auto,
 .category-list-item-name-icon.health,
 .category-list-item-name-icon.transport,
 .category-list-item-name-icon.entertainment,
 .category-list-item-name-icon.connections,
 .category-list-item-name-icon.clothes,
-.category-list-item-name-icon.food {
+.category-list-item-name-icon.food,
+.category-list-item-name-icon.house {
     background-size: 100% 100%;
 }
