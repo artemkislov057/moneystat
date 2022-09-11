@@ -1,6 +1,9 @@
 import { Backdrop, Box, Button, Fade, FormControl, InputLabel, ListSubheader, MenuItem, Modal, Select, SxProps, TextField, Theme, Typography } from "@mui/material";
 import React from "react";
+import { TransactionCategorySelectItem } from "../transactionCategorySelectItem/transactionCategorySelectItem";
 import './addTransactionModal.css';
+
+import test from './icons/closeModalIcon.svg';
 
 type TProps = {
     title: string
@@ -37,6 +40,7 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
                             label={'Введите сумму'}
                             fullWidth
                             required
+                            type={'number'}
                         />
                         <FormControl fullWidth>
                             <InputLabel id="category-select">Категория</InputLabel>
@@ -45,9 +49,21 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
                                 label='Категория'
                                 fullWidth
                             >
-                                <MenuItem value={'products'}>Продукты</MenuItem>
-                                <MenuItem value={'products'}>Одежда</MenuItem>
-                                <MenuItem value={'products'}>Автомобиль</MenuItem>
+                                <MenuItem value={'food'}>
+                                    <TransactionCategorySelectItem 
+                                        type="food"
+                                    />
+                                </MenuItem>
+                                <MenuItem value={'clothes'}>
+                                    <TransactionCategorySelectItem 
+                                        type="clothes"
+                                    />
+                                </MenuItem>
+                                <MenuItem value={'auto'}>
+                                    <TransactionCategorySelectItem 
+                                        type="auto"
+                                    />
+                                </MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl fullWidth>
@@ -60,10 +76,18 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <ListSubheader>Продукты</ListSubheader>
+                                <ListSubheader>
+                                    <TransactionCategorySelectItem 
+                                        type="food"
+                                    />
+                                </ListSubheader>
                                 <MenuItem value={'products'}>Пельмени</MenuItem>
                                 <MenuItem value={'products'}>Макароны</MenuItem>
-                                <ListSubheader>Одежда</ListSubheader>
+                                <ListSubheader>
+                                    <TransactionCategorySelectItem 
+                                        type="clothes"
+                                    />
+                                </ListSubheader>
                                 <MenuItem value={3}>Футболки</MenuItem>
                                 <MenuItem value={4}>Кросовки</MenuItem>
                             </Select>

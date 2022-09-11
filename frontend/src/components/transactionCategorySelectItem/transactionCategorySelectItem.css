@@ -1,0 +1,77 @@
+.transaction-category-select-container {
+    display: flex;
+    width: 100%;
+    padding: 0px 20%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #464C55;
+}
+
+.transaction-category-select-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.transaction-category-select-title-container {
+    width: 100%;
+}
+
+.transaction-category-select-title {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction-category-select-icon.food {
+    background: url('icons/foodIcon.svg') 50% 50% no-repeat;    
+}
+
+.transaction-category-select-icon.clothes {
+    background: url('icons/clothesIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.auto {
+    background: url('icons/autoIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.connections {
+    background: url('icons/connectionsIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.entertainment {
+    background: url('icons/entertainmentIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.transport {
+    background: url('icons/transportIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.health {
+    background: url('icons/healtsIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.salary {
+    background: url('icons/salaryIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.investments {
+    background: url('icons/investmentsIcon.svg') 50% 50% no-repeat;
+}
+
+.transaction-category-select-icon.auto,
+.transaction-category-select-icon.health,
+.transaction-category-select-icon.transport,
+.transaction-category-select-icon.entertainment,
+.transaction-category-select-icon.connections,
+.transaction-category-select-icon.clothes,
+.transaction-category-select-icon.food,
+.transaction-category-select-icon.salary,
+.transaction-category-select-icon.investments {
+    background-size: 100% 100%;
+}

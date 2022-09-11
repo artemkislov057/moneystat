@@ -34,6 +34,15 @@
     right: 0;
     width: 18px;
     height: 18px;
+    border: none;
+    background-color: transparent;
+    background: url('icons/closeModalIcon.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.add-transaction-modal-content-header-close-button:hover {
+    opacity: .7;
 }
 
 .add-transaction-modal-content-inputs {
@@ -41,4 +50,10 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
+}
+
+.test {
+    background-color: aquamarine;
+    width: 100%;
+    height: 40px;
 }

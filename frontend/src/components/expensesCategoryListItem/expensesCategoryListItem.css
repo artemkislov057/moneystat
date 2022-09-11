@@ -62,7 +62,7 @@
 }
 
 .category-list-item-name-icon.food {
-    background: url('icons/foodIcon.svg') 50% 50% no-repeat;
+    background: url('icons/foodIcon.svg') 50% 50% no-repeat;    
 }
 
 .category-list-item-name-icon.clothes {
@@ -86,5 +86,15 @@
 }
 
 .category-list-item-name-icon.health {
-    background: url('icons/healthIcon.svg') 50% 50% no-repeat;
+    background: url('icons/healtsIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.auto,
+.category-list-item-name-icon.health,
+.category-list-item-name-icon.transport,
+.category-list-item-name-icon.entertainment,
+.category-list-item-name-icon.connections,
+.category-list-item-name-icon.clothes,
+.category-list-item-name-icon.food {
+    background-size: 100% 100%;
 }
