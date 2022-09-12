@@ -23,3 +23,9 @@
 .main-expenses-chart {
     margin-top: auto;
 }
+
+.expenses-doughnut-diagram {
+    box-sizing: border-box;
+    display: flex;
+    width: 200px;
+}

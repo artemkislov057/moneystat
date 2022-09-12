@@ -26,7 +26,6 @@ export const DoughnutChart:React.FC = () => {
 
     return <div 
         className="expenses-doughnut-diagram" 
-        style={{width: 250, height: 250}}
     >
         <Doughnut 
             data={

@@ -53,8 +53,7 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
         }
     }, [props.isOpen])
 
-    return <div className="add-transaction-modal-container">
-        <Modal
+    return <Modal
             open={props.isOpen}            
             closeAfterTransition            
             onClose={() => props.closeModal()}
@@ -147,6 +146,5 @@ export const AddTransactionModal:React.FC<TProps> = (props) => {
                 </div>
             </Box>
         </Fade>
-        </Modal>
-    </div>
+    </Modal>
 }
