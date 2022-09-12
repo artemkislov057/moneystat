@@ -18,7 +18,8 @@ export const DoughnutChart:React.FC = () => {
                     '#4851FB',
                     '#FB4B81',
                     '#FF8B4F'
-                ]
+                ],
+                borderWidth: 0
             }
         ],
     }
