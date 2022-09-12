@@ -37,7 +37,7 @@ export const DoughnutChart:React.FC = () => {
                     plugins: {
                         legend: {
                             display: false
-                        }
+                        }                        
                     }                    
                 }
             }

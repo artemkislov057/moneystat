@@ -27,7 +27,7 @@ export const MainExpenses:React.FC<TProps> = (props) => {
         />
         <div className="main-expenses-show-container">
             <span>Показать за Март</span>
-            <FormControl variant="standard" fullWidth>
+            <FormControl variant="standard" fullWidth sx={{maxWidth: 300}}>
                 {/* <InputLabel id="expenses-category-for-half">Категория</InputLabel> */}
                 <Select
                     labelId="expenses-category-for-half"
@@ -43,8 +43,8 @@ export const MainExpenses:React.FC<TProps> = (props) => {
                     {expensesCategory.map((data) => {
                         return <MenuItem value={data} key={data}>
                             <TransactionCategorySelectItem 
-                                type={data as ExpensesCategoryType}
-                            />
+                                type={data as ExpensesCategoryType}                                
+                            />                            
                         </MenuItem>
                     })}
                 </Select>
