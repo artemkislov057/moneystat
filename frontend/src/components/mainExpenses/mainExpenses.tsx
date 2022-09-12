@@ -26,6 +26,7 @@ export const MainExpenses:React.FC<TProps> = (props) => {
                     fullWidth
                     variant="standard"
                     size="small"
+                    value={''}
                 >
                     {expensesCategory.map((data) => {
                         return <MenuItem value={data} key={data}>
