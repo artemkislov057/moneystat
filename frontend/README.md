@@ -45,11 +45,13 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-lib: 
-# mui
-# redux, redux toolkit
-# chart.js
-# formik
-# react-router-dom
-# react-transition-group
-# react-query
+
+
+## lib: 
+### `mui`
+### `redux, redux toolkit`
+### `chart.js`
+### `formik`
+### `react-router-dom`
+### `react-transition-group`
+### `react-query`
