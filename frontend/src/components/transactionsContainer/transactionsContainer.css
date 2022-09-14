@@ -7,6 +7,18 @@
     box-shadow: 10px 15px 20px rgba(82, 126, 185, 0.1);
     border-radius: 10px;
     align-items: center;
+    padding-top: 30px;
+    gap: 50px;
+}
+
+.transactions-container-header {
+    display: flex;
+    flex-direction: column;    
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
 }
 
 .transactions-container-filter-inputs-container {
@@ -31,4 +43,12 @@
     display: flex;
     gap: 10%;
     width: 100%;
+}
+
+.transactions-container-transaction-list {
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }

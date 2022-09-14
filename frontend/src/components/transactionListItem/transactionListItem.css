@@ -53,12 +53,17 @@
 }
 
 .category-list-item-price-delete-button {
-    width: 15px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     border: none;
     background-color: transparent;
     background: url('icons/deleteIcon.svg') 50% 50% no-repeat;
     background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.category-list-item-price-delete-button:hover {
+    opacity: .7;
 }
 
 .category-list-item-name-icon.food {
@@ -93,6 +98,14 @@
     background: url('icons/houseIcon.svg') 50% 50% no-repeat;
 }
 
+.category-list-item-name-icon.salary {
+    background: url('icons/salaryIcon.svg') 50% 50% no-repeat;
+}
+
+.category-list-item-name-icon.investments {
+    background: url('icons/investmentsIcon.svg') 50% 50% no-repeat;
+}
+
 .category-list-item-name-icon.auto,
 .category-list-item-name-icon.health,
 .category-list-item-name-icon.transport,
@@ -100,6 +113,8 @@
 .category-list-item-name-icon.connections,
 .category-list-item-name-icon.clothes,
 .category-list-item-name-icon.food,
-.category-list-item-name-icon.house {
+.category-list-item-name-icon.house,
+.category-list-item-name-icon.salary,
+.category-list-item-name-icon.investments {
     background-size: 100% 100%;
 }
