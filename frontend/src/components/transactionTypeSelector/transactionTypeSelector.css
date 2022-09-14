@@ -1,0 +1,15 @@
+.transaction-type-selector {
+    display: flex;
+    gap: 5px;
+    height: 40px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction-type-selector-dividing-line {
+    height: 40%;
+    width: 2px;
+    background-color: #464C55;
+    flex-shrink: 0;
+}

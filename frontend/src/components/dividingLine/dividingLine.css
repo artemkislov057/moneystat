@@ -1,6 +1,13 @@
 .dividing-line {
     width: 100%;
-    height: 1px;
-    background-color: #969CA4;
+    height: 1px;    
     flex-shrink: 0;
+}
+
+.dividing-line.gray {
+    background-color: #969CA4;
+}
+
+.dividing-line.lightGray {
+    background-color: #F5F7FB;
 }

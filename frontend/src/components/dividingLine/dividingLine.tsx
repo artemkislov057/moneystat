@@ -1,6 +1,10 @@
 import React from "react";
 import './dividingLine.css';
 
-export const DividingLine:React.FC = React.memo(() => {
-    return <div className="dividing-line"></div>
+type TProps = {
+    color: 'gray' | 'lightGray'
+}
+
+export const DividingLine:React.FC<TProps> = React.memo((props) => {
+    return <div className={`dividing-line ${props.color}`}></div>
 })
