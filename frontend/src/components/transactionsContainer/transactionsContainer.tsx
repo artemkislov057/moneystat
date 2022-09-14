@@ -1,5 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { expensesCategory } from "../../constants/expensesCategory";
 import { incomeCategory } from "../../constants/incomeCategoryes";
 import { ExpensesCategoryType, IncomeCategoryType, TransactionType } from "../../types/types";
@@ -90,9 +90,11 @@ const transactions: {income: Array<TransactionItemType>, expenses: Array<Transac
 
 export const TransactionsContainer:React.FC = (props) => {
     const [activeTransactionGroup, setActiveTransactionGroup] = useState<TransactionType>('income');
+    const [currentCategoryFilter, setCurrentCategoryFilter] = useState<ExpensesCategoryType | IncomeCategoryType | ''>('');
 
     function onClickTransactionGroupSelect(value: TransactionType) {
         setActiveTransactionGroup(value);
+        setCurrentCategoryFilter('');
     }
 
     return <div className='transactions-container'>
@@ -120,10 +122,12 @@ export const TransactionsContainer:React.FC = (props) => {
                                 labelId="category-select"
                                 label='Категория'
                                 
-                                // onChange={(e) => formik.setFieldValue('category', e.target.value)}
-                                // value={formik.values.category}
-                                value={''}
-                            >                                    
+                                onChange={(e) => setCurrentCategoryFilter(e.target.value as ExpensesCategoryType | IncomeCategoryType)}
+                                value={currentCategoryFilter}
+                            >
+                                <MenuItem value=''>
+                                    Все категории
+                                </MenuItem>
                                 {categoryItems[activeTransactionGroup].map((data) => {
                                     return <MenuItem value={data} key={data}>
                                         <TransactionCategorySelectItem 
@@ -139,8 +143,12 @@ export const TransactionsContainer:React.FC = (props) => {
             </div>
         </div>
         <div className="transactions-container-transaction-list">
-            {transactions[activeTransactionGroup].map((item) => {
-                return <div className="transactions-container-transaction-list-item">
+            {transactions[activeTransactionGroup].map((item, i) => {
+                if(currentCategoryFilter !== item.type && currentCategoryFilter !== '') {
+                    return null;
+                }
+                
+                return <div className="transactions-container-transaction-list-item" key={item.date+item.price+ ' ' +i}>
                     <TransactionListItem 
                         price={item.price}
                         type={item.type}
