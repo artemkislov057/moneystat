@@ -91,6 +91,9 @@ const transactions: {income: Array<TransactionItemType>, expenses: Array<Transac
 export const TransactionsContainer:React.FC = (props) => {
     const [activeTransactionGroup, setActiveTransactionGroup] = useState<TransactionType>('income');
     const [currentCategoryFilter, setCurrentCategoryFilter] = useState<ExpensesCategoryType | IncomeCategoryType | ''>('');
+    const [minCostValueFilter, setMinCostValueFilter] = useState<number>(null);
+    const [maxCostValueFilter, setMaxCostValueFilter] = useState<number>(null);
+
 
     function onClickTransactionGroupSelect(value: TransactionType) {
         setActiveTransactionGroup(value);
@@ -109,9 +112,13 @@ export const TransactionsContainer:React.FC = (props) => {
                     <div className="transactions-container-filter-inputs-row">
                         <MoneyInput
                             label="Мин.сумма"
+                            value={minCostValueFilter}
+                            onChange={(e) => setMinCostValueFilter(e)}
                         />
                         <MoneyInput
                             label="Макс.сумма"
+                            value={maxCostValueFilter}
+                            onChange={(e) => setMaxCostValueFilter(e)}
                         />
                     </div>
                     <div className="transactions-container-filter-inputs-row">
@@ -145,6 +152,12 @@ export const TransactionsContainer:React.FC = (props) => {
         <div className="transactions-container-transaction-list">
             {transactions[activeTransactionGroup].map((item, i) => {
                 if(currentCategoryFilter !== item.type && currentCategoryFilter !== '') {
+                    return null;
+                }
+                if(minCostValueFilter && +item.price < minCostValueFilter) {
+                    return null;
+                }
+                if(maxCostValueFilter && +item.price > maxCostValueFilter) {
                     return null;
                 }
                 
