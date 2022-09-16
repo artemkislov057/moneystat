@@ -5,7 +5,8 @@
     flex-direction: column;
     gap: 20px;
     box-sizing: border-box;
-    padding: 40px 70px !important;
+    /* padding: 40px 70px !important; */
+    padding: 3.5% 6%;
     position: relative;
 }
 

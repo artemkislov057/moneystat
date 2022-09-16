@@ -66,7 +66,7 @@ export const BarChart:React.FC<TProps> = React.memo((props) => {
                         },
                         y: {
                             grid: {
-                                display: false
+                                borderDash: [2,5]
                             },
                             ticks: {
                                 font: {

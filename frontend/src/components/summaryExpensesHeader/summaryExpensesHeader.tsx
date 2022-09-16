@@ -11,6 +11,6 @@ export const SummaryExpensesHeader:React.FC<TProps> = React.memo((props) => {
         <span className="summary-expenses-header-title">
             {props.title}
         </span>
-        <DividingLine />
+        <DividingLine color="gray"/>
     </div>
 })

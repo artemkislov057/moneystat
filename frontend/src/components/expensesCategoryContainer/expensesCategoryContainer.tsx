@@ -1,7 +1,7 @@
 import React from "react";
 import { DividingLine } from "../dividingLine/dividingLine";
-import { CategoryListItem } from "../expensesCategoryListItem/expensesCategoryListItem";
 import { SummaryExpensesHeader } from "../summaryExpensesHeader/summaryExpensesHeader";
+import { TransactionListItem } from "../transactionListItem/transactionListItem";
 import './expensesCategoryContainer.css';
 
 export const ExpensesCategoryContainer:React.FC = () => {
@@ -13,48 +13,48 @@ export const ExpensesCategoryContainer:React.FC = () => {
         </div>        
         <div className="expenses-category-container-list-container">
             <div className="expenses-category-container-list">
-                <CategoryListItem 
+                <TransactionListItem 
                     type="auto"
                     price="1523"
                     typePrice="expenses"
                 />
-                <DividingLine />
-                <CategoryListItem 
+                <DividingLine color="gray"/>
+                <TransactionListItem 
                     type="food"
                     price="1523"
                     typePrice="expenses"
                 />
-                <DividingLine />
-                <CategoryListItem 
+                <DividingLine color="gray"/>
+                <TransactionListItem 
                     type="connections"
                     price="1523"
                     typePrice="expenses"
                 />
-                <DividingLine />
-                <CategoryListItem 
+                <DividingLine color="gray"/>
+                <TransactionListItem 
                     type="health"
                     price="1523"
                     typePrice="expenses"
                 />
-                <DividingLine />
-                <CategoryListItem 
+                <DividingLine color="gray"/>
+                <TransactionListItem 
                     type="transport"
                     price="1523"
                     typePrice="expenses"
                 />
-                <DividingLine />
-                <CategoryListItem 
+                <DividingLine color="gray"/>
+                <TransactionListItem 
                     type="entertainment"
                     price="1523"
                     typePrice="expenses"
                 />
-                <DividingLine />
-                <CategoryListItem 
+                <DividingLine color="gray"/>
+                <TransactionListItem 
                     type="house"
                     price="1523"
                     typePrice="expenses"
                 />
-                <DividingLine />
+                <DividingLine color="gray"/>
             </div>
         </div>
     </div>
