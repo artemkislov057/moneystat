@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     padding-top: 40px;
-    width: 200px;
+    width: 220px;
     height: 100%;
     box-sizing: border-box;
     background-color: #FFFFFF;
@@ -25,7 +25,7 @@
     height: 60px;
     box-sizing: border-box;
     align-items: center;
-    padding-left: 15px;
+    padding: 0 15px;
     gap: 20px;
     color: #969CA4;
     font-weight: 500;

@@ -23,7 +23,7 @@ export const MainPageTransactions:React.FC = () => {
             />
             <TransactionInfoContainer
                 type={activeTransactionGroup}
-                totalValue="2836"
+                totalValue={activeTransactionGroup === 'expenses' ? "2836" : '1364378'}
             />
         </div>
     </div>
