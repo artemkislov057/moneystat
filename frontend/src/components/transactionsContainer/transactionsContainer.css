@@ -9,6 +9,7 @@
     align-items: center;
     padding-top: 30px;
     gap: 50px;
+    box-sizing: border-box;
 }
 
 .transactions-container-header {

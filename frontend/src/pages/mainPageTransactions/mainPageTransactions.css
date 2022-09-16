@@ -7,3 +7,11 @@
     position: relative;
     gap: 20px;
 }
+
+.main-page-transactions-right-part {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
