@@ -13,7 +13,7 @@ function App() {
   const [activePart, setActivePart] = useState<SectionType>('summary');
 
   useEffect(() => {
-    naviagtor('/transactions');
+    naviagtor('/goals');
   }, [])
   
   useEffect(() => {
