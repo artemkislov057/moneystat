@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { TransactionInfoContainer } from "../../components/transactionInfoContainer/transactionInfoContainer";
-import { MoneyInput } from "../../components/moneyInput/moneyInput";
-import { TestDiagram } from "../../components/testDiagram/testDiagram";
 import { TransactionsContainer } from "../../components/transactionsContainer/transactionsContainer";
 import './mainPageTransactions.css';
+import { TransactionType } from "../../types/types";
 
 export const MainPageTransactions:React.FC = () => {
+    const [activeTransactionGroup, setActiveTransactionGroup] = useState<TransactionType>('income');
+
+    function changeActiveTransactionGroup(e: TransactionType) {
+        setActiveTransactionGroup(e)
+    }
+
     return <div className="main-page-transactions-container">
-        <TransactionsContainer />
+        <TransactionsContainer
+            activeTransactionGroup={activeTransactionGroup}
+            onChangeActiveTransactionGroup={e => changeActiveTransactionGroup(e)}
+        />
         <div className="main-page-transactions-right-part">
             <TransactionInfoContainer
-                title="Баланс"
+                type="balance"
                 totalValue="15473"
             />
             <TransactionInfoContainer
-                title="Расходы"
+                type={activeTransactionGroup}
                 totalValue="2836"
             />
         </div>

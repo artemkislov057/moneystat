@@ -10,6 +10,11 @@ import { TransactionListItem } from "../transactionListItem/transactionListItem"
 import { TransactionTypeSelector } from "../transactionTypeSelector/transactionTypeSelector";
 import './transactionsContainer.css';
 
+type TProps = {
+    activeTransactionGroup: TransactionType
+    onChangeActiveTransactionGroup: (e: TransactionType) => void
+}
+
 const categoryItems = {
     income: incomeCategory,
     expenses: expensesCategory
@@ -88,22 +93,21 @@ const transactions: {income: Array<TransactionItemType>, expenses: Array<Transac
     ]
 }
 
-export const TransactionsContainer:React.FC = (props) => {
-    const [activeTransactionGroup, setActiveTransactionGroup] = useState<TransactionType>('income');
+export const TransactionsContainer:React.FC<TProps> = (props) => {    
     const [currentCategoryFilter, setCurrentCategoryFilter] = useState<ExpensesCategoryType | IncomeCategoryType | ''>('');
     const [minCostValueFilter, setMinCostValueFilter] = useState<number>(null);
     const [maxCostValueFilter, setMaxCostValueFilter] = useState<number>(null);
 
 
     function onClickTransactionGroupSelect(value: TransactionType) {
-        setActiveTransactionGroup(value);
+        props.onChangeActiveTransactionGroup(value);
         setCurrentCategoryFilter('');
     }
 
     return <div className='transactions-container'>
         <div className="transactions-container-header">
             <TransactionTypeSelector
-                activeGroup={activeTransactionGroup}
+                activeGroup={props.activeTransactionGroup}
                 onClick={(e) => onClickTransactionGroupSelect(e)}
             />
             <div>Март</div>
@@ -135,7 +139,7 @@ export const TransactionsContainer:React.FC = (props) => {
                                 <MenuItem value=''>
                                     Все категории
                                 </MenuItem>
-                                {categoryItems[activeTransactionGroup].map((data) => {
+                                {categoryItems[props.activeTransactionGroup].map((data) => {
                                     return <MenuItem value={data} key={data}>
                                         <TransactionCategorySelectItem 
                                             type={data as ExpensesCategoryType | IncomeCategoryType}
@@ -150,7 +154,7 @@ export const TransactionsContainer:React.FC = (props) => {
             </div>
         </div>
         <div className="transactions-container-transaction-list">
-            {transactions[activeTransactionGroup].map((item, i) => {
+            {transactions[props.activeTransactionGroup].map((item, i) => {
                 if(currentCategoryFilter !== item.type && currentCategoryFilter !== '') {
                     return null;
                 }
@@ -165,7 +169,7 @@ export const TransactionsContainer:React.FC = (props) => {
                     <TransactionListItem 
                         price={item.price}
                         type={item.type}
-                        typePrice={activeTransactionGroup}
+                        typePrice={props.activeTransactionGroup}
                         date={item.date}
                         onClickDelete={() => {}}
                     />
