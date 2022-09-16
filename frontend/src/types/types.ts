@@ -1,4 +1,4 @@
-export type SectionType = 'summary' | 'transactions' | 'goals';
+export type SectionType = 'summary' | 'transactions' | 'goals' | 'exit';
 
 export type ExpensesCategoryType = 'food' | 'clothes' | 'auto' | 'connections' | 'entertainment' | 'transport' | 'house' | 'health';
 

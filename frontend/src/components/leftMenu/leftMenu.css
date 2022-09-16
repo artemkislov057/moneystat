@@ -1,7 +1,7 @@
 .left-menu-container {
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
+    padding: 40px 0;
     width: 220px;
     height: 100%;
     box-sizing: border-box;
@@ -19,6 +19,12 @@
     color: #464C55;
 }
 
+.left-menu-category {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .menu-item-container {
     display: flex;
     width: 100%;
@@ -32,6 +38,10 @@
     font-size: 20px;
     line-height: 30px;
     cursor: pointer;
+}
+
+.menu-item-container.exit {
+    margin-top: auto;    
 }
 
 .menu-item-container:hover {
@@ -72,4 +82,20 @@
 
 .menu-item-icon.goals.active {
     background: url('icons/goalsActiveIcon.svg') 50% 50% no-repeat;
+}
+
+.menu-item-icon.exit {
+    background: url('icons/exitIcon.svg') 50% 50% no-repeat;
+}
+
+.menu-item-icon.summary,
+.menu-item-icon.summary.active,
+.menu-item-icon.transactions,
+.menu-item-icon.transactions.active,
+.menu-item-icon.goals,
+.menu-item-icon.goals.active,
+.menu-item-icon.exit {
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
 }

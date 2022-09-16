@@ -10,12 +10,13 @@ type TProps = {
 const nameButtons = {
     summary: 'Сводка',
     transactions: 'Транзакции',
-    goals: 'Цели'
+    goals: 'Цели',
+    exit: 'Выход'
 }
 
 export const MenuItem:React.FC<TProps> = (props) => {
     return <div 
-        className={`menu-item-container ${props.isActive ? 'active': ''}`}
+        className={`menu-item-container ${props.isActive ? 'active': ''} ${props.type}`}
         onClick={() => props.onClick()}
     >
         <span className={`menu-item-icon ${props.type} ${props.isActive ? 'active': ''}`}></span>

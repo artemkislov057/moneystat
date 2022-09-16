@@ -1,12 +1,13 @@
 import React from "react";
 import { MenuItem } from "./menuItem";
 import './leftMenu.css';
+import { SectionType } from "../../types/types";
 
 type TProps = {
     onClickSummary: () => void
     onClickTransactions: () => void
     onClickGoals: () => void
-    activeButton: 'summary' | 'transactions' | 'goals'
+    activeButton: SectionType
 }
 
 export const LeftMenu:React.FC<TProps> = (props) => {
@@ -27,6 +28,11 @@ export const LeftMenu:React.FC<TProps> = (props) => {
                 isActive={props.activeButton === 'goals'}
                 type={'goals'}
                 onClick={props.onClickGoals}
+            />
+            <MenuItem 
+                isActive={false}
+                type={'exit'}
+                onClick={() => console.log('exit')}
             />
         </div>
     </div>
