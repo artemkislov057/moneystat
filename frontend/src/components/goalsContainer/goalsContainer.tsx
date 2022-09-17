@@ -30,7 +30,7 @@ export const GoalsContainer:React.FC<TProps> = (props) => {
             <Autocomplete
                 freeSolo
                 options={[]}
-                renderInput={(params) => <TextField {...params} label="freeSolo" />}
+                renderInput={(params) => <TextField {...params} label="Найти цель" />}
             />
         </div>
         <TwoButtonsSelector
