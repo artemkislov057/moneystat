@@ -38,6 +38,13 @@
     padding: 0 12px;
 }
 
+.goals-container-header-create-icon {
+    width: 20px;
+    height: 20px;
+    background: url('icons/addGoalIcon.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+}
+
 .goals-container-header-create-caption {
     font-weight: 500;
     font-size: 14px;

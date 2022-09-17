@@ -22,7 +22,9 @@ export const GoalsContainer:React.FC<TProps> = (props) => {
                 <Fab
                     color="primary"
                     sx={{backgroundColor: '#4851FB'}}
-                >+</Fab>
+                >
+                    <span className="goals-container-header-create-icon"></span>
+                </Fab>
                 <span className="goals-container-header-create-caption">
                     Создать новую цель
                 </span>
