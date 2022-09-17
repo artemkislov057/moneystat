@@ -10,7 +10,7 @@ type TProps = {
     colorGoal: 'green' | 'yellow' | 'purple' | 'pink'
 }
 
-export const GoalsListItem:React.FC<TProps> = React.memo((props) => {   
+export const GoalsListItem:React.FC<TProps> = React.memo((props) => {
     return <div className="goals-list-item-container">
         <div className="goals-list-item-left-part">
             <span className={`goals-list-item-left-part-selected-line ${props.isSelected ? 'active' : ''}`}></span>
