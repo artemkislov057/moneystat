@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MoneyStat.DataBase.Entities;
+using MoneyStat.Infra.Helpers;
 using MoneyStat.WebApi.Api.Attributes;
 using MoneyStat.WebApi.Api.Dto.Users;
 using MoneyStat.WebApi.Model.Services;
@@ -18,19 +19,19 @@ public sealed class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> AddUser([FromBody] UserDto dto)
+    public async Task<ActionResult> AddUser([FromBody] AddUserBodyDto resultDto)
     {
-        var entity = new User { Name = dto.Name, Age = dto.Age };
+        var entity = TypeMapper<AddUserBodyDto, User>.MapForward(resultDto);
         await userService.AddUser(entity);
         return Ok();
     }
 
     [HttpGet]
     [Route("{id:int}")]
-    public async Task<ActionResult<UserDto>> GetUser([FromRoute] int id)
+    public async Task<ActionResult<UserResultDto>> GetUser([FromRoute] int id)
     {
         var entity = await userService.GetUser(id);
-        var dto = new UserDto { Id = entity.Id, Name = entity.Name, Age = entity.Age };
+        var dto = TypeMapper<User, UserResultDto>.MapForward(entity);
         return Ok(dto);
     }
 }
