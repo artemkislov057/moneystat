@@ -1,4 +1,5 @@
 import React from "react";
+import { GoalColorsType } from "../../types/types";
 
 type TProps = {
     isSelected: boolean
@@ -7,7 +8,7 @@ type TProps = {
     totalSum: number
     completeSum: number
     deadLineDate: string
-    colorGoal: 'green' | 'yellow' | 'purple' | 'pink'
+    colorGoal: GoalColorsType
 }
 
 export const GoalsListItem:React.FC<TProps> = React.memo((props) => {

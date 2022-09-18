@@ -1,0 +1,67 @@
+.setting-goal-container {
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 10px 15px 15px rgba(82, 126, 185, 0.1);
+    border-radius: 10px;
+}
+
+.create-goal-container {
+    display: flex;
+    box-sizing: border-box;
+    padding: 30px 20px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.title-goal-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    color: #464C55;
+}
+
+.create-goal-container-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.select-color-item {
+    width: 130px;
+    height: 30px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.select-color-item.green {
+    background-color: #01D9A0;
+}
+
+.select-color-item.yellow {
+    background-color: #FBF248;
+}
+
+.select-color-item.purple {
+    background-color: #9B3DFD;
+}
+
+.select-color-item.pink {
+    background-color: #FB4B81;
+    color: #f5f7fbc9;
+}
+
+.create-goal-container-buttons {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    margin-top: auto;
+}

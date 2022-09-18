@@ -121,12 +121,12 @@ export const TransactionsContainer:React.FC<TProps> = (props) => {
                         <MoneyInput
                             label="Мин.сумма"
                             value={minCostValueFilter}
-                            onChange={(e) => setMinCostValueFilter(e)}
+                            onChange={(e) => setMinCostValueFilter(e as number)}
                         />
                         <MoneyInput
                             label="Макс.сумма"
                             value={maxCostValueFilter}
-                            onChange={(e) => setMaxCostValueFilter(e)}
+                            onChange={(e) => setMaxCostValueFilter(e as number)}
                         />
                     </div>
                     <div className="transactions-container-filter-inputs-row">

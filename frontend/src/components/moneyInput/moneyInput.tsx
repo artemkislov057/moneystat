@@ -4,8 +4,10 @@ import './moneyInput.css';
 
 type TProps = {
     label: string
-    value: number
-    onChange: (e: number) => void
+    value: number | string
+    onChange: (e: number | string) => void
+    id?: string
+    required?: boolean
 }
 
 export const MoneyInput:React.FC<TProps> = (props) => {
@@ -17,6 +19,8 @@ export const MoneyInput:React.FC<TProps> = (props) => {
             startAdornment: <InputAdornment position="start">₽</InputAdornment>
         }}
         value={props.value || ''}
-        onChange={e => props.onChange(+e.target.value)}
+        onChange={e => props.onChange(e.target.value)}
+        id={props?.id}
+        required={props?.required}
     />
 }
