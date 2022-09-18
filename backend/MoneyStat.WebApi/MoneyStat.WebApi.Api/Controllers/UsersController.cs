@@ -20,7 +20,7 @@ public sealed class UsersController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> AddUser([FromBody] UserDto dto)
     {
-        var entity = new User { Id = dto.Id, Name = dto.Name, Age = dto.Age };
+        var entity = new User { Name = dto.Name, Age = dto.Age };
         await userService.AddUser(entity);
         return Ok();
     }
