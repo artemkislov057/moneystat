@@ -32,6 +32,7 @@
     flex-direction: column;
     width: 100%;
     gap: 30px;
+    overflow-y: auto;
 }
 
 .select-color-item {

@@ -74,7 +74,7 @@ export const CreateGoalContainer:React.FC<TProps> = (props) => {
                 id={'currentSum'}
                 required
             />
-            <TextField                                
+            <TextField
                 id="caption"
                 label={'Описание цели'}
                 fullWidth
