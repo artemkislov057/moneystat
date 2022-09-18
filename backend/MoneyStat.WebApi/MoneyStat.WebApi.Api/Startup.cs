@@ -1,16 +1,27 @@
-﻿using Microsoft.AspNetCore.SpaServices;
+﻿using LightInject;
+using Microsoft.AspNetCore.SpaServices;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using MoneyStat.DataBase;
 using MoneyStat.WebApi.Api.Middlewares;
 
 namespace MoneyStat.WebApi.Api;
 
-public sealed class Startup
+public class Startup
 {
-    private readonly string ApiBase = "/api";
-    
+    private readonly IConfiguration configuration;
+    private const string ApiBase = "/api";
+
+    public Startup(IConfiguration configuration)
+    {
+        this.configuration = configuration;
+    }
+
     public void ConfigureServices(IServiceCollection services)
     {
+        var dbConnection = configuration.GetConnectionString("LocalConnection");
+        services.AddDbContext<MoneyStatDbContext>(options => options.UseSqlServer(dbConnection));
         services.AddRouting();
         services.AddControllers();
         services.AddSwaggerGen();
@@ -34,7 +45,18 @@ public sealed class Startup
         app.UseMiddleware<SpaNotFoundMiddleware>(ApiBase);
         app.UseSpa(ConfigureSpa);
     }
-    
+
+    public void ConfigureContainer(IServiceContainer container)
+    {
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(assembly => assembly.FullName?.StartsWith("MoneyStat") == true);
+        foreach (var assembly in assemblies)
+        {
+            container.RegisterAssembly(assembly, () => new PerRequestLifeTime(),
+                (serviceType, implementationType) => serviceType.IsInterface);
+        }
+    }
+
     private static void ConfigureSpa(ISpaBuilder spa)
     {
         spa.Options.DefaultPageStaticFileOptions = new StaticFileOptions
