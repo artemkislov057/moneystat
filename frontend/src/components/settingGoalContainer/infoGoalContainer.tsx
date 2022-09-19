@@ -11,6 +11,7 @@ type TProps = {
     goalColor: GoalColorsType
     totalSum: string
     currentSum: string
+    onClickEdit: () => void
 }
 
 export const InfoGoalContainer:React.FC<TProps> = (props) => {
@@ -62,6 +63,7 @@ export const InfoGoalContainer:React.FC<TProps> = (props) => {
                 color="primary"
                 size="large"
                 fullWidth
+                onClick={() => props.onClickEdit()}
             >
                 Редактировать цель
             </Button>

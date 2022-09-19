@@ -5,7 +5,7 @@ import { TwoButtonsSelector } from "../transactionTypeSelector/twoButtonsSelecto
 import './goalsContainer.css';
 
 type TProps = {
-
+    onClickCreateGoal: () => void
 }
 
 type CategoryGolasType = 'activeGoals' | 'competeGoals'
@@ -22,6 +22,7 @@ export const GoalsContainer:React.FC<TProps> = (props) => {
                 <Fab
                     color="primary"
                     sx={{backgroundColor: '#4851FB'}}
+                    onClick={() => props.onClickCreateGoal()}
                 >
                     <span className="goals-container-header-create-icon"></span>
                 </Fab>

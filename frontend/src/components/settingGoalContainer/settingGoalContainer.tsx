@@ -5,14 +5,33 @@ import { InfoGoalContainer } from "./infoGoalContainer";
 import './settingGoalContainer.css';
 
 type TProps = {
-
+    currentGoalData?: any
+    type: 'create' | 'info'
+    show: boolean
 }
 
 export const SettingGoalContainer:React.FC<TProps> = (props) => {
     return <div className="setting-goal-container">
-        {/* <CreateGoalContainer
-            type="create"
-        /> */}
+        {
+            props.type === 'create' && props.show ?
+            <CreateGoalContainer
+                type="create"
+            />
+            : null
+        }
+        {
+            props.type === 'info' && props.show ?
+            <InfoGoalContainer 
+                date="25.10.2022"
+                goalName="Накопить на машину"
+                caption="Тут какое-то описание заметка цели по ширине блок 420, в данном примере а по выосте не больше 60-70, когда становится больше можно "
+                goalColor="purple"
+                totalSum={'351600'}
+                currentSum={'150500'}
+                onClickEdit={() => {}}
+            />
+            : null
+        }
         {/* <CreateGoalContainer
             type="edit"
             data={{
@@ -24,13 +43,5 @@ export const SettingGoalContainer:React.FC<TProps> = (props) => {
                 totalSum: '447473377'
             }}
         /> */}
-        <InfoGoalContainer 
-            date="25.10.2022"
-            goalName="Накопить на машину"
-            caption="Тут какое-то описание заметка цели по ширине блок 420, в данном примере а по выосте не больше 60-70, когда становится больше можно "
-            goalColor="purple"
-            totalSum={'351600'}
-            currentSum={'150500'}
-        />
     </div>
 }

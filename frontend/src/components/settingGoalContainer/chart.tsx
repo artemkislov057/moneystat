@@ -55,7 +55,6 @@ export const DoughnutChart:React.FC<TProps> = (props) => {
                             ctx.font = fontSize + "em sans-serif";
                             ctx.textBaseline = "top";
                             let percent = (+props.currentSum / +props.totalSum) * 100;
-                            console.log(percent)
                             var text = percent.toFixed(1) + '%',
                             textX = Math.round((width - ctx.measureText(text).width) / 2),
                             textY = height / 2 - 15;
