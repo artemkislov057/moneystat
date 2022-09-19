@@ -14,7 +14,7 @@
     height: 100%;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
 }
 
 .title-goal-container {
@@ -33,6 +33,8 @@
     width: 100%;
     gap: 30px;
     overflow-y: auto;
+    padding-top: 5px;
+    box-sizing: border-box;
 }
 
 .select-color-item {

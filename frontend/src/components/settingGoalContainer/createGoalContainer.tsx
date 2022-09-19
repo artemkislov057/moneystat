@@ -3,13 +3,21 @@ import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { useFormik } from "formik";
 import React from "react";
 import { goalColors } from "../../constants/goalColors";
+import { GoalColorsType } from "../../types/types";
 import { MoneyInput } from "../moneyInput/moneyInput";
 import { SelectColorItem } from "./selectColorItem";
 import { TitleGoalContainer } from "./titleGoalContainer";
 
 type TProps = {
     type: 'create' | 'edit'
-    data?: any //
+    data?: {
+        title: string, 
+        date: string,
+        totalSum: string, 
+        currentSum: string,
+        caption: string,
+        goalColor: GoalColorsType
+    }
 }
 
 const titleTypeValues = {
@@ -27,12 +35,12 @@ const titleTypeValues = {
 export const CreateGoalContainer:React.FC<TProps> = (props) => {
     const formik = useFormik({
         initialValues: {
-            title: '', 
-            date: '',
-            totalSum: '', 
-            currentSum: '',
-            caption: '',
-            goalColor: ''
+            title: props.data?.title || '', 
+            date: props.data?.date || '',
+            totalSum: props.data?.totalSum || '', 
+            currentSum: props.data?.currentSum || '',
+            caption: props.data?.caption || '',
+            goalColor: props.data?.goalColor || ''
         },
         onSubmit: (e) => console.log(e)
     })
