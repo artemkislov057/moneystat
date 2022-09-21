@@ -7,7 +7,7 @@ import { DividingLine } from "../dividingLine/dividingLine";
 import { MoneyInput } from "../moneyInput/moneyInput";
 import { TransactionCategorySelectItem } from "../transactionCategorySelectItem/transactionCategorySelectItem";
 import { TransactionListItem } from "../transactionListItem/transactionListItem";
-import { TransactionTypeSelector } from "../transactionTypeSelector/transactionTypeSelector";
+import { TwoButtonsSelector } from "../transactionTypeSelector/twoButtonsSelector";
 import './transactionsContainer.css';
 
 type TProps = {
@@ -106,9 +106,13 @@ export const TransactionsContainer:React.FC<TProps> = (props) => {
 
     return <div className='transactions-container'>
         <div className="transactions-container-header">
-            <TransactionTypeSelector
-                activeGroup={props.activeTransactionGroup}
-                onClick={(e) => onClickTransactionGroupSelect(e)}
+            <TwoButtonsSelector
+                activeButton={props.activeTransactionGroup === 'income' ? 'left' : 'right'}
+                onClick={(e) => onClickTransactionGroupSelect(e as TransactionType)}
+                titleLeft='Доходы'
+                titleRight="Расходы"
+                valueLeft="income"
+                valueRight="expenses"
             />
             <div>Март</div>
             <div className="transactions-container-filter-inputs-container">
@@ -117,12 +121,12 @@ export const TransactionsContainer:React.FC<TProps> = (props) => {
                         <MoneyInput
                             label="Мин.сумма"
                             value={minCostValueFilter}
-                            onChange={(e) => setMinCostValueFilter(e)}
+                            onChange={(e) => setMinCostValueFilter(e as number)}
                         />
                         <MoneyInput
                             label="Макс.сумма"
                             value={maxCostValueFilter}
-                            onChange={(e) => setMaxCostValueFilter(e)}
+                            onChange={(e) => setMaxCostValueFilter(e as number)}
                         />
                     </div>
                     <div className="transactions-container-filter-inputs-row">
