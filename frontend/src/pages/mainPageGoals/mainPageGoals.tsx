@@ -18,7 +18,7 @@ export const MainPageGoals:React.FC = () => {
             onClickCreateGoal={openCreateGoalContainer}
         />        
         <SettingGoalContainer
-            type="create"
+            type="info"
             show={showCreateGoal}
         />        
     </div>

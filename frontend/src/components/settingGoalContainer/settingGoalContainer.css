@@ -130,3 +130,53 @@
     margin-top: auto;
     width: 100%;
 }
+
+.add-sum-modal-content-container {
+    width: 330px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px 20px;
+    background: #FFFFFF;
+    box-shadow: 10px 20px 15px rgba(72, 81, 251, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 5px;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.add-sum-modal-content-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.add-sum-modal-content-header-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    color: #464C55;
+    max-width: 200px;
+    text-align: center;
+}
+
+.add-sum-modal-content-header-close-button {
+    position: absolute;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+    border: none;
+    background: url('./icons/closeModalIcon.svg') 50% 50% no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.add-sum-modal-content-header-close-button:hover {
+    opacity: .7;
+}
+
+.MuiButtonBase-root.aaa {
+    margin-top: auto;
+}

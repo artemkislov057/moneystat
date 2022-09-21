@@ -1,6 +1,7 @@
 import { Button, Fab, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { GoalColorsType } from "../../types/types";
+import { AddSumModal } from "./addSumModal";
 import { DoughnutChart } from "./chart";
 import { TitleGoalContainer } from "./titleGoalContainer";
 
@@ -15,6 +16,16 @@ type TProps = {
 }
 
 export const InfoGoalContainer:React.FC<TProps> = (props) => {
+    const [showAddSumModal, setShowAddSumModal] = useState<boolean>(false);
+
+    function openModal() {
+        setShowAddSumModal(true);
+    }
+
+    function closeModal() {
+        setShowAddSumModal(false);
+    }
+
     return <div className="info-goal-container">
         <div className="info-goal-container-header">
             <TitleGoalContainer value={'Моя цель'} />
@@ -43,6 +54,7 @@ export const InfoGoalContainer:React.FC<TProps> = (props) => {
             <div className="info-goal-container-caption-container-fab-container">
                 <Fab
                     sx={{border: '1px solid #4851FB', backgroundColor: 'transparent', color: '#4851FB'}}
+                    onClick={() => openModal()}
                 >
                     <span className="info-goal-container-caption-container-fab-icon add"></span>
                 </Fab>
@@ -68,5 +80,9 @@ export const InfoGoalContainer:React.FC<TProps> = (props) => {
                 Редактировать цель
             </Button>
         </div>
+        <AddSumModal 
+            closeModal={closeModal}
+            isOpen={showAddSumModal}
+        />
     </div>
 }
