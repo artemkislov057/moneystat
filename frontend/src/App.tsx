@@ -7,10 +7,19 @@ import { StartPage } from './pages/startPage/startPage';
 import { LeftMenu } from './components/leftMenu/leftMenu';
 import { SectionType } from './types/types';
 import './App.css';
+import { WindowSizeContext } from './context/windowSizeContext';
 
 function App() {
   const naviagtor = useNavigate();
   const [activePart, setActivePart] = useState<SectionType>('summary');
+  const [currentWindowWidth, setCurrentWindowWidth] = useState<number>(window.visualViewport.width);
+
+  useEffect(() => {
+    window.visualViewport.onresize = e => {
+      //@ts-ignore
+      setCurrentWindowWidth(e.target.width);
+    }
+  }, [])
 
   useEffect(() => {
     naviagtor('/goals');
@@ -39,6 +48,7 @@ function App() {
 
   return (
     <div className="App">
+      <WindowSizeContext.Provider value={{windowWidth: currentWindowWidth}}>
         {document.location.pathname !== '/' && 
           <LeftMenu
             onClickSummary={openSummary} 
@@ -65,6 +75,7 @@ function App() {
             element={<MainPageGoals />}
           />
         </Routes>
+      </WindowSizeContext.Provider>
     </div>
   );
 }
