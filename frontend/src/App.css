@@ -4,4 +4,14 @@
   display: flex;
   background: #F5F7FB;
   font-family: 'Montserrat', 'Poppins';
+
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent; 
+}
+
+@media screen and (max-width: 1024px) {
+  .App {
+    min-height: 100vh;
+    height: 100%;
+  }
 }

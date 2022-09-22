@@ -118,3 +118,9 @@
 .category-list-item-name-icon.investments {
     background-size: 100% 100%;
 }
+
+@media screen and (max-width: 640px) {
+    .category-list-item {
+        padding: 20px 10px;
+    }
+}

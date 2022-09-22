@@ -22,7 +22,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    naviagtor('/goals');
+    naviagtor('/summary');
   }, [])
   
   useEffect(() => {

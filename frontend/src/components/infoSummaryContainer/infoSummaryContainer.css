@@ -69,3 +69,25 @@
     font-size: 28px;
     line-height: 20px;
 }
+
+@media screen and (max-width: 1024px) {
+    .info-summary-container {
+        gap: 12px;
+        padding: 20px 10px;
+    }
+
+    .info-summary-container-icon {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        left: 0;
+    }
+
+    .info-summary-container-data-value {
+        font-size: 20px;
+    }
+
+    .info-summary-container-data {
+        gap: 20px;
+    }
+}

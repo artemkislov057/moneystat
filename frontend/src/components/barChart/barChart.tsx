@@ -44,6 +44,7 @@ const data: ChartData<'bar'> = {
 export const BarChart:React.FC<TProps> = React.memo((props) => {
     return <div className="bar-chart-container">
         <div className="bar-chart-chart">
+            <div className="bar-chart-chart-help">
             <Bar 
                 options={{
                     plugins: {
@@ -85,6 +86,7 @@ export const BarChart:React.FC<TProps> = React.memo((props) => {
                 }}
                 data={data}
             />
-        </div>        
+            </div>
+        </div>
     </div>
 })

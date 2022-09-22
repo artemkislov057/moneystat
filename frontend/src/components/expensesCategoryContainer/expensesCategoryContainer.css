@@ -36,3 +36,24 @@
     height: 100%;
     box-sizing: border-box;
 }
+
+@media screen and (max-width: 1024px) {
+    .expenses-category-container {
+        width: 100%;
+        height: 340px;        
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .expenses-category-header-container {
+        padding: 20px 15px;
+    }
+
+    .expenses-category-container-list-container {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+}
