@@ -81,10 +81,7 @@ public class Startup
             });
             var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            if (File.Exists(xmlPath))
-            {
-                configure.IncludeXmlComments(xmlPath);
-            }
+            configure.IncludeXmlComments(xmlPath);
         });
         services.AddSpaStaticFiles(configure => { configure.RootPath = "wwwroot"; });
         services.AddCors();
