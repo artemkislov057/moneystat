@@ -1,5 +1,5 @@
 import { BarElement, CategoryScale, Chart, ChartData, Legend, LinearScale, Title, Tooltip } from "chart.js";
-import React from "react";
+import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import './barChart.css';
 
@@ -28,17 +28,20 @@ const data: ChartData<'bar'> = {
         label: 'Доходы',
         data: [10,15,11,100,123,1,1,1,2,3,48,4,5,6,5,6],
         backgroundColor: '#01D9A0',
-        barPercentage: .35,
+        // barPercentage: 1,
+        categoryPercentage: .8,
         borderRadius: 100,
       },
       {
         label: 'Расходы',
         data: [20,5,100,123,1,1,1,2,3,48,4,5,6,5,6],
         backgroundColor: '#4851FB',
-        barPercentage: .35,
+        // barPercentage: 1,
+        categoryPercentage: .8,
         borderRadius: 100
       },
     ],
+    
   };
 
 export const BarChart:React.FC<TProps> = React.memo((props) => {
@@ -55,6 +58,7 @@ export const BarChart:React.FC<TProps> = React.memo((props) => {
                     },
                     maintainAspectRatio: false,
                     scales: {
+                        
                         x: {
                             grid: {
                                 display: false
@@ -63,8 +67,11 @@ export const BarChart:React.FC<TProps> = React.memo((props) => {
                                 font: {
                                     size: 12
                                 }
-                            }
+                            },
+                            
+                            
                         },
+                        
                         y: {
                             grid: {
                                 borderDash: [2,5]

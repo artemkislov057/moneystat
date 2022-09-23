@@ -1,5 +1,5 @@
 import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { expensesCategory } from "../../constants/expensesCategory";
 import { ExpensesCategoryType } from "../../types/types";
 import { SummaryExpensesHeader } from "../summaryExpensesHeader/summaryExpensesHeader";
@@ -11,7 +11,7 @@ type TProps = {
 
 }
 
-export const MainExpenses:React.FC<TProps> = (props) => {
+export const MainExpenses:React.FC<TProps> = React.memo((props) => {
     const [categories, setCategories] = useState<Array<string>>(['']);
 
     function update(e: SelectChangeEvent<string[]>) {
@@ -20,6 +20,8 @@ export const MainExpenses:React.FC<TProps> = (props) => {
             typeof value === 'string' ? value.split(',') : value,
           );
     }
+
+   
 
     return <div className="main-expenses-container">
         <SummaryExpensesHeader 
@@ -43,8 +45,8 @@ export const MainExpenses:React.FC<TProps> = (props) => {
                     {expensesCategory.map((data) => {
                         return <MenuItem value={data} key={data}>
                             <TransactionCategorySelectItem 
-                                type={data as ExpensesCategoryType}                                
-                            />                            
+                                type={data as ExpensesCategoryType}
+                            />
                         </MenuItem>
                     })}
                 </Select>
@@ -54,4 +56,4 @@ export const MainExpenses:React.FC<TProps> = (props) => {
             <DoughnutChart />
         </div>
     </div>
-}
+})
