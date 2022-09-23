@@ -13,7 +13,6 @@ public sealed class MoneyStatDbContext : MoneyStatDbContextBase, IMoneyStatDbCon
     public MoneyStatDbContext(DbContextOptions<MoneyStatDbContext> options)
         : base(options)
     {
-        
     }
     
     public DbSet<User> Users { get; set; }
