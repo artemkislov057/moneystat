@@ -1,9 +1,9 @@
 import { Chart, ChartData } from "chart.js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import 'chart.js/auto'
 
-export const DoughnutChart:React.FC = () => {
+export const DoughnutChart:React.FC = React.memo(() => {   
     const data: ChartData<'doughnut'> = {
         labels: [1,2,3,4,5,6,7,8],
         datasets: [
@@ -69,4 +69,4 @@ export const DoughnutChart:React.FC = () => {
             }
         />
     </div>
-}
+})
