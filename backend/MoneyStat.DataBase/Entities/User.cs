@@ -1,8 +1,16 @@
-﻿namespace MoneyStat.DataBase.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-public sealed class User
+namespace MoneyStat.DataBase.Entities;
+
+public sealed class User : IdentityUser<Guid>
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Age { get; set; }
+    public User()
+    {
+        
+    }
+
+    public User(string userName)
+        : base(userName)
+    {
+    }
 }

@@ -23,7 +23,7 @@ public sealed class SpaNotFoundMiddleware
                 HttpCode = 404,
                 Message = "Ресурс не найден"
             };
-            await context.WriteJsonResponse(dto.HttpCode, dto);
+            await context.WriteJsonResponse(404, dto);
         }
         else
         {
