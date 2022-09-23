@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MoneyStat.DataBase.Entities;
 using MoneyStat.WebApi.Api.Attributes;
+using MoneyStat.WebApi.Api.Dto.Common;
 using MoneyStat.WebApi.Api.Dto.Users;
 
 namespace MoneyStat.WebApi.Api.Controllers;
@@ -46,7 +47,11 @@ public sealed class UsersController : ControllerBase
             await signInManager.PasswordSignInAsync(requestDto.Email, requestDto.Password, true, false);
         if (!result.Succeeded)
         {
-            return BadRequest();
+            return BadRequest(new ErrorDto
+            {
+                HttpCode = 404,
+                Message = "Неправильный логин или пароль"
+            });
         }
 
         return Ok();

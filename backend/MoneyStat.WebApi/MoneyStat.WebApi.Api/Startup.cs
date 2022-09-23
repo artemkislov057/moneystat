@@ -1,4 +1,5 @@
-﻿using LightInject;
+﻿using System.Text.Json.Serialization;
+using LightInject;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices;
@@ -63,7 +64,13 @@ public class Startup
             };
         });
         services.AddRouting();
-        services.AddControllers();
+        services
+            .AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
         services.AddSwaggerGen();
         services.AddSpaStaticFiles(configure => { configure.RootPath = "wwwroot"; });
         services.AddCors();

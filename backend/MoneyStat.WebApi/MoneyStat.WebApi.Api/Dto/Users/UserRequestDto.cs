@@ -5,6 +5,7 @@ namespace MoneyStat.WebApi.Api.Dto.Users;
 public class UserRequestDto
 {
     [Required]
+    [EmailAddress]
     public string Email { get; set; }
     
     [Required]
