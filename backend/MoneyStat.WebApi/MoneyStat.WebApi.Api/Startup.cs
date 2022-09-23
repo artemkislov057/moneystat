@@ -23,7 +23,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var dbConnection = appConfiguration.GetConnectionString("LocalConnection");
+        var dbConnection = appConfiguration.GetConnectionString("MoneyStatDb");
         services.AddDbContext<MoneyStatDbContext>(options => options.UseSqlServer(dbConnection));
         services.AddIdentity<User, IdentityRole<Guid>>(configure =>
             {
@@ -42,7 +42,8 @@ public class Startup
             {
                 OnRedirectToLogin = redirectContext =>
                 {
-                    if (redirectContext.Request.Path.StartsWithSegments(ApiBase) && redirectContext.Response.StatusCode == 200)
+                    if (redirectContext.Request.Path.StartsWithSegments(ApiBase) &&
+                        redirectContext.Response.StatusCode == 200)
                     {
                         redirectContext.Response.StatusCode = 401;
                     }
@@ -51,7 +52,8 @@ public class Startup
                 },
                 OnRedirectToAccessDenied = redirectContext =>
                 {
-                    if (redirectContext.Request.Path.StartsWithSegments(ApiBase) && redirectContext.Response.StatusCode == 200)
+                    if (redirectContext.Request.Path.StartsWithSegments(ApiBase) &&
+                        redirectContext.Response.StatusCode == 200)
                     {
                         redirectContext.Response.StatusCode = 403;
                     }
@@ -64,6 +66,7 @@ public class Startup
         services.AddControllers();
         services.AddSwaggerGen();
         services.AddSpaStaticFiles(configure => { configure.RootPath = "wwwroot"; });
+        services.AddCors();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -76,6 +79,11 @@ public class Startup
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 options.RoutePrefix = "swagger";
             });
+            app.UseCors(builder => builder
+                .WithOrigins(appConfiguration.GetSection("CorsOrigins").Get<string[]>())
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
         }
 
         app.UseHttpsRedirection();
