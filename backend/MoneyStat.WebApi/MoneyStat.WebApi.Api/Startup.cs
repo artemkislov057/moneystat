@@ -71,7 +71,21 @@ public class Startup
                 options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(configure =>
+        {
+            configure.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+            {
+                Version = "v1",
+                Title = $"{appConfiguration["AppName"]} API",
+                Description = $"Public API for project \"{appConfiguration["AppName"]}\""
+            });
+            var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            if (File.Exists(xmlPath))
+            {
+                configure.IncludeXmlComments(xmlPath);
+            }
+        });
         services.AddSpaStaticFiles(configure => { configure.RootPath = "wwwroot"; });
         services.AddCors();
     }

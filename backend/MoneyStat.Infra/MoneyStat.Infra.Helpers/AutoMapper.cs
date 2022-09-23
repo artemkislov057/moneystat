@@ -10,12 +10,13 @@ public static class TypeMapper<TFrom, TTo>
 
     static TypeMapper()
     {
-        ReconfigureWith<TFrom, TTo>();
-        var configurationProvider = new MapperConfiguration(configure =>
+        MapperConfigurationExpression = new MapperConfigurationExpression
         {
-            configure.AllowNullCollections = true;
-            configure.AllowNullDestinationValues = true;
-        });
+            AllowNullCollections = true,
+            AllowNullDestinationValues = true
+        };
+        ReconfigureWith<TFrom, TTo>();
+        var configurationProvider = new MapperConfiguration(MapperConfigurationExpression);
         mapper = new Mapper(configurationProvider);
     }
     
