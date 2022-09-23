@@ -9,18 +9,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="LightInject" Version="6.5.2"/>
-        <PackageReference Include="LightInject.Microsoft.AspNetCore.Hosting" Version="2.3.5"/>
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9"/>
-        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.8"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="LightInject" Version="6.5.2" />
+        <PackageReference Include="LightInject.Microsoft.AspNetCore.Hosting" Version="2.3.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\MoneyStat.DataBase\MoneyStat.DataBase.csproj"/>
-        <ProjectReference Include="..\..\MoneyStat.Infra\MoneyStat.Infra.Helpers\MoneyStat.Infra.Helpers.csproj"/>
-        <ProjectReference Include="..\MoneyStat.WebApi.Model\MoneyStat.WebApi.Model.csproj"/>
+        <ProjectReference Include="..\..\MoneyStat.DataBase\MoneyStat.DataBase.csproj" />
+        <ProjectReference Include="..\..\MoneyStat.Infra\MoneyStat.Infra.Helpers\MoneyStat.Infra.Helpers.csproj" />
+        <ProjectReference Include="..\MoneyStat.WebApi.Model\MoneyStat.WebApi.Model.csproj" />
     </ItemGroup>
 
 </Project>

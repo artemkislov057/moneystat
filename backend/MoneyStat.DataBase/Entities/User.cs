@@ -6,7 +6,6 @@ public sealed class User : IdentityUser<Guid>
 {
     public User()
     {
-        
     }
 
     public User(string userName)

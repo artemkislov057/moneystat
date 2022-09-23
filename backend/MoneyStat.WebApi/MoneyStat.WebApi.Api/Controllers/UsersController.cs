@@ -59,7 +59,7 @@ public sealed class UsersController : ControllerBase
         {
             return BadRequest(new ErrorDto
             {
-                HttpCode = 404,
+                HttpCode = 400,
                 Message = "Неправильный логин или пароль"
             });
         }

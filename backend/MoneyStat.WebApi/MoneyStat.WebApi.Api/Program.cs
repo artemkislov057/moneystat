@@ -1,6 +1,7 @@
 using LightInject.Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using MoneyStat.DataBase;
+using MoneyStat.WebApi.Model.Services;
 
 namespace MoneyStat.WebApi.Api;
 
@@ -18,6 +19,7 @@ public static class Program
     private static Type[] GetUsedTypes()
         => new[]
         {
+            typeof(ExpensesCategoriesService),
             typeof(MoneyStatDbContext)
         };
 }

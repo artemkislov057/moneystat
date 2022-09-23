@@ -8,10 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\MoneyStat.DataBase\MoneyStat.DataBase.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Services" />
+      <ProjectReference Include="..\..\MoneyStat.Infra\MoneyStat.Infra.Helpers\MoneyStat.Infra.Helpers.csproj" />
     </ItemGroup>
 
 </Project>
