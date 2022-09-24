@@ -18,9 +18,9 @@ public class CategoryDto
     public int? ParentId { get; set; }
     
     /// <summary>
-    /// Id пользователя, создавшего категорию
+    /// Является ли родительская категория основной
     /// </summary>
-    public Guid? UserId { get; set; }
+    public bool? IsParentBase { get; set; }
     
     /// <summary>
     /// Подкатегории

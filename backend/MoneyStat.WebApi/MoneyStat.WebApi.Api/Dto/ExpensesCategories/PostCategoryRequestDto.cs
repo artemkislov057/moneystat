@@ -15,4 +15,10 @@ public class PostCategoryRequestDto
     /// </summary>
     [Required]
     public int? ParentId { get; set; }
+    
+    /// <summary>
+    /// Добавить в основную категорию или в подкатегорию
+    /// </summary>
+    [Required]
+    public bool? IsParentBase { get; set; }
 }

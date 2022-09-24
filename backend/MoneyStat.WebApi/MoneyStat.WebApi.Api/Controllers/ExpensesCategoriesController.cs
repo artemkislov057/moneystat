@@ -48,21 +48,26 @@ public class ExpensesCategoriesController : ControllerBase
         var userId = Guid.Parse(userManager.GetUserId(User));
         try
         {
-            var id = await service.AddCategory(dto.Name, dto.ParentId.Value, userId);
+            var id = await service.AddCategory(dto.Name, dto.ParentId.Value, userId, dto.IsParentBase.Value);
             return Created(string.Empty, new CategoryDto
             {
                 Id = id,
-                Name = dto.Name,
-                ParentId = dto.ParentId,
-                UserId = userId
+                Name = dto.Name
             });
         }
         catch (NotUsersCategoryException e)
         {
             return BadRequest(new ErrorDto { HttpCode = 400, Message = e.Message });
         }
+        catch (BaseExpensesCategoryNotFoundException e)
+        {
+            return BadRequest(new ErrorDto { HttpCode = 400, Message = e.Message });
+        }
     }
 
+    /// <summary>
+    /// Удалить категорию (также удаляет подкатегории)
+    /// </summary>
     [HttpDelete]
     [Route("{id:int}")]
     [ProducesResponseType(200)]

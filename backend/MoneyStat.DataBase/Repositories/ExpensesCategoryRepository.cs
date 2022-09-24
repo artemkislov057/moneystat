@@ -6,7 +6,7 @@ namespace MoneyStat.DataBase.Repositories;
 public interface IExpensesCategoryRepository
 {
     Task Add(ExpensesCategory category);
-    Task<Guid?> GetExpensesCategoryUserId(int categoryId);
+    Task<Guid> GetExpensesCategoryUserId(int categoryId);
     Task<ExpensesCategory[]> GetByUserId(Guid userId);
     Task<ExpensesCategory[]> GetBaseCategories();
     Task DeleteCategoriesByIds(IEnumerable<int> categoryIds);
@@ -28,7 +28,7 @@ public class ExpensesCategoryRepository : IExpensesCategoryRepository
         return context.SaveChangesAsync();
     }
 
-    public Task<Guid?> GetExpensesCategoryUserId(int categoryId) =>
+    public Task<Guid> GetExpensesCategoryUserId(int categoryId) =>
         context.ExpensesCategories
             .Where(c => c.Id == categoryId)
             .Select(c => c.UserId)

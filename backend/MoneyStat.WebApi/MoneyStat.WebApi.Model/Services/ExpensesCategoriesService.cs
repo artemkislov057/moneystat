@@ -9,23 +9,26 @@ namespace MoneyStat.WebApi.Model.Services;
 public interface IExpensesCategoriesService
 {
     Task<ExpensesCategoryResult[]> GetCategories(Guid userId);
-    Task<int> AddCategory(string name, int parentId, Guid userId);
+    Task<int> AddCategory(string name, int parentId, Guid userId, bool toBaseCategory);
     Task DeleteCategory(int categoryId, Guid userId);
 }
 
 public class ExpensesCategoriesService : IExpensesCategoriesService
 {
     private readonly IExpensesCategoryRepository categoryRepository;
+    private readonly IBaseExpensesCategoryRepository baseExpensesCategoryRepository;
 
-    public ExpensesCategoriesService(IExpensesCategoryRepository categoryRepository)
+    public ExpensesCategoriesService(IExpensesCategoryRepository categoryRepository,
+        IBaseExpensesCategoryRepository baseExpensesCategoryRepository)
     {
         this.categoryRepository = categoryRepository;
+        this.baseExpensesCategoryRepository = baseExpensesCategoryRepository;
     }
 
     public async Task<ExpensesCategoryResult[]> GetCategories(Guid userId)
     {
-        var baseCategories = (await categoryRepository.GetBaseCategories())
-            .Select(TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward)
+        var baseCategories = (await baseExpensesCategoryRepository.Get())
+            .Select(TypeMapper<BaseExpensesCategory, ExpensesCategoryResult>.MapForward)
             .ToArray();
         var subcategories = (await categoryRepository.GetByUserId(userId))
             .Select(TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward);
@@ -34,14 +37,26 @@ public class ExpensesCategoriesService : IExpensesCategoriesService
         return baseCategories.ToArray();
     }
 
-    public async Task<int> AddCategory(string name, int parentId, Guid userId)
+    public async Task<int> AddCategory(string name, int parentId, Guid userId, bool toBaseCategory)
     {
-        await CheckIsUsersCategory(parentId, userId, false);
+        if (toBaseCategory)
+        {
+            if (!await baseExpensesCategoryRepository.IsExist(parentId))
+            {
+                throw new BaseExpensesCategoryNotFoundException(parentId);
+            }
+        }
+        else
+        {
+            await CheckIsUsersCategory(parentId, userId);
+        }
+
 
         var entity = new ExpensesCategory
         {
             Name = name,
             ParentId = parentId,
+            IsParentBase = toBaseCategory,
             UserId = userId
         };
         await categoryRepository.Add(entity);
@@ -50,12 +65,17 @@ public class ExpensesCategoriesService : IExpensesCategoriesService
 
     public async Task DeleteCategory(int categoryId, Guid userId)
     {
-        await CheckIsUsersCategory(categoryId, userId, true);
+        await CheckIsUsersCategory(categoryId, userId);
         var category = await categoryRepository.GetById(categoryId);
         var categoryResult = TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward(category);
         var subCategories = (await categoryRepository.GetByUserId(userId))
             .Select(TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward)
-            .Where(c => c.Id != categoryId);
+            .Where(c => !c.IsParentBase.Value && c.Id != categoryId)
+            .ToArray();
+        foreach (var subcategory in subCategories.Where(c => c.ParentId == categoryId))
+        {
+            subcategory.IsParentBase = true;
+        }
         FillSubcategoriesInCategories(new[] { categoryResult }, subCategories);
 
         var result = new List<int>();
@@ -75,15 +95,12 @@ public class ExpensesCategoriesService : IExpensesCategoriesService
         await categoryRepository.DeleteCategoriesByIds(result);
     }
 
-    private async Task CheckIsUsersCategory(int categoryId, Guid userId, bool onlySubcategories)
+    private async Task CheckIsUsersCategory(int categoryId, Guid userId)
     {
         bool isException;
         try
         {
-            var actualUserId = await categoryRepository.GetExpensesCategoryUserId(categoryId);
-            isException = onlySubcategories
-                ? actualUserId != userId
-                : actualUserId is not null && actualUserId != userId;
+            isException = await categoryRepository.GetExpensesCategoryUserId(categoryId) != userId;
         }
         catch (InvalidOperationException e)
         {
@@ -96,21 +113,37 @@ public class ExpensesCategoriesService : IExpensesCategoriesService
         }
     }
 
-    private static void FillSubcategoriesInCategories(IEnumerable<ExpensesCategoryResult> categories,
+    private static void FillSubcategoriesInCategories(IEnumerable<ExpensesCategoryResult> categoriesToFill,
         IEnumerable<ExpensesCategoryResult> subcategories)
     {
-        var categoriesIdDictionary = categories.ToDictionary(c => c.Id);
+        var categoriesIdDictionary = categoriesToFill.ToDictionary(c => c.Id,
+            c => new FillHelper { Base = c });
         foreach (var subcategory in subcategories)
         {
-            if (!categoriesIdDictionary.ContainsKey(subcategory.Id))
+            if (categoriesIdDictionary.ContainsKey(subcategory.Id))
             {
-                categoriesIdDictionary[subcategory.Id] = subcategory;
+                categoriesIdDictionary[subcategory.Id].Sub = subcategory;
+            }
+            else
+            {
+                categoriesIdDictionary[subcategory.Id] = new FillHelper { Sub = subcategory };
             }
 
-            if (categoriesIdDictionary.ContainsKey(subcategory.ParentId.Value))
+            if (!categoriesIdDictionary.ContainsKey(subcategory.ParentId.Value)) continue;
+            if (subcategory.IsParentBase.Value)
             {
-                categoriesIdDictionary[subcategory.ParentId.Value].Subcategories.Add(subcategory);
+                categoriesIdDictionary[subcategory.ParentId.Value].Base.Subcategories.Add(subcategory);
+            }
+            else
+            {
+                categoriesIdDictionary[subcategory.ParentId.Value].Sub.Subcategories.Add(subcategory);
             }
         }
+    }
+
+    private class FillHelper
+    {
+        public ExpensesCategoryResult? Base { get; set; }
+        public ExpensesCategoryResult? Sub { get; set; }
     }
 }
