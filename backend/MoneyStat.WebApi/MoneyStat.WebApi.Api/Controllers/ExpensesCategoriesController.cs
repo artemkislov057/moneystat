@@ -69,7 +69,15 @@ public class ExpensesCategoriesController : ControllerBase
     public async Task<ActionResult> DeleteCategory([FromRoute] int id)
     {
         var userId = Guid.Parse(userManager.GetUserId(User));
-        await service.DeleteCategory(id, userId);
+        try
+        {
+            await service.DeleteCategory(id, userId);
+        }
+        catch (NotUsersCategoryException e)
+        {
+            return BadRequest(new ErrorDto { HttpCode = 400, Message = e.Message });
+        }
+
         return Ok();
     }
 }

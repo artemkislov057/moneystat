@@ -6,10 +6,11 @@ namespace MoneyStat.DataBase.Repositories;
 public interface IExpensesCategoryRepository
 {
     Task Add(ExpensesCategory category);
-    Task<Guid?> GetExpensesCategoryUserId(int id);
+    Task<Guid?> GetExpensesCategoryUserId(int categoryId);
     Task<ExpensesCategory[]> GetByUserId(Guid userId);
     Task<ExpensesCategory[]> GetBaseCategories();
-    Task DeleteCategoryWithSubcategories(int categoryId, Guid userId);
+    Task DeleteCategoriesByIds(IEnumerable<int> categoryIds);
+    Task<ExpensesCategory?> GetById(int categoryId);
 }
 
 public class ExpensesCategoryRepository : IExpensesCategoryRepository
@@ -27,9 +28,9 @@ public class ExpensesCategoryRepository : IExpensesCategoryRepository
         return context.SaveChangesAsync();
     }
 
-    public Task<Guid?> GetExpensesCategoryUserId(int id) =>
+    public Task<Guid?> GetExpensesCategoryUserId(int categoryId) =>
         context.ExpensesCategories
-            .Where(c => c.Id == id)
+            .Where(c => c.Id == categoryId)
             .Select(c => c.UserId)
             .FirstAsync();
 
@@ -43,8 +44,13 @@ public class ExpensesCategoryRepository : IExpensesCategoryRepository
             .Where(c => c.ParentId == null)
             .ToArrayAsync();
 
-    public Task DeleteCategoryWithSubcategories(int categoryId, Guid userId)
+    public Task DeleteCategoriesByIds(IEnumerable<int> categoryIds)
     {
-        throw new NotImplementedException();
+        context.ExpensesCategories.RemoveRange(context.ExpensesCategories.Where(c => categoryIds.Contains(c.Id)));
+        return context.SaveChangesAsync();
     }
+
+    public Task<ExpensesCategory?> GetById(int categoryId) =>
+        context.ExpensesCategories
+            .FirstOrDefaultAsync(c => c.Id == categoryId);
 }

@@ -27,21 +27,16 @@ public class ExpensesCategoriesService : IExpensesCategoriesService
         var baseCategories = (await categoryRepository.GetBaseCategories())
             .Select(TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward)
             .ToArray();
-        var subCategories = (await categoryRepository.GetByUserId(userId))
+        var subcategories = (await categoryRepository.GetByUserId(userId))
             .Select(TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward);
-        var categoriesIdDictionary = baseCategories.ToDictionary(c => c.Id);
-        foreach (var subCategory in subCategories)
-        {
-            categoriesIdDictionary[subCategory.Id] = subCategory;
-            categoriesIdDictionary[subCategory.ParentId.Value].Subcategories.Add(subCategory);
-        }
 
+        FillSubcategoriesInCategories(baseCategories, subcategories);
         return baseCategories.ToArray();
     }
 
     public async Task<int> AddCategory(string name, int parentId, Guid userId)
     {
-        await CheckIsUsersCategory(parentId, userId, true);
+        await CheckIsUsersCategory(parentId, userId, false);
 
         var entity = new ExpensesCategory
         {
@@ -56,7 +51,28 @@ public class ExpensesCategoriesService : IExpensesCategoriesService
     public async Task DeleteCategory(int categoryId, Guid userId)
     {
         await CheckIsUsersCategory(categoryId, userId, true);
-        await categoryRepository.DeleteCategoryWithSubcategories(categoryId, userId);
+        var category = await categoryRepository.GetById(categoryId);
+        var categoryResult = TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward(category);
+        var subCategories = (await categoryRepository.GetByUserId(userId))
+            .Select(TypeMapper<ExpensesCategory, ExpensesCategoryResult>.MapForward)
+            .Where(c => c.Id != categoryId);
+        FillSubcategoriesInCategories(new[] { categoryResult }, subCategories);
+
+        var result = new List<int>();
+        var toCheck = new List<ExpensesCategoryResult> { categoryResult };
+        while (toCheck.Any())
+        {
+            var nextCheck = new List<ExpensesCategoryResult>();
+            foreach (var toCheckUnit in toCheck)
+            {
+                result.Add(toCheckUnit.Id);
+                nextCheck.AddRange(toCheckUnit.Subcategories);
+            }
+
+            toCheck = nextCheck;
+        }
+
+        await categoryRepository.DeleteCategoriesByIds(result);
     }
 
     private async Task CheckIsUsersCategory(int categoryId, Guid userId, bool onlySubcategories)
@@ -77,6 +93,24 @@ public class ExpensesCategoriesService : IExpensesCategoriesService
         if (isException)
         {
             throw new NotUsersCategoryException(categoryId);
+        }
+    }
+
+    private static void FillSubcategoriesInCategories(IEnumerable<ExpensesCategoryResult> categories,
+        IEnumerable<ExpensesCategoryResult> subcategories)
+    {
+        var categoriesIdDictionary = categories.ToDictionary(c => c.Id);
+        foreach (var subcategory in subcategories)
+        {
+            if (!categoriesIdDictionary.ContainsKey(subcategory.Id))
+            {
+                categoriesIdDictionary[subcategory.Id] = subcategory;
+            }
+
+            if (categoriesIdDictionary.ContainsKey(subcategory.ParentId.Value))
+            {
+                categoriesIdDictionary[subcategory.ParentId.Value].Subcategories.Add(subcategory);
+            }
         }
     }
 }
