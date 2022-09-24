@@ -108,6 +108,7 @@ public class Startup
 
         app.UseSpaStaticFiles();
 
+        app.UseMiddleware<ExceptionHandlerMiddleware>();
         app.UseRouting();
 
         app.UseAuthentication();

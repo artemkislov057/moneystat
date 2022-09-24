@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MoneyStat.WebApi.Api.Extensions;
 
@@ -9,6 +10,12 @@ public static class HttpContextExtensions
         context.Response.StatusCode = status;
         context.Response.ContentType = "application/json";
         await using var stream = new StreamWriter(context.Response.Body);
-        await stream.WriteAsync(JsonSerializer.Serialize(dto));
+        var jsonOptions = new JsonSerializerOptions 
+        { 
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+        JsonSerializer.Serialize(dto);
+        await stream.WriteAsync(JsonSerializer.Serialize(dto, jsonOptions));
     }
 }

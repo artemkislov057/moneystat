@@ -1,6 +1,8 @@
-﻿namespace MoneyStat.WebApi.Model.Exceptions.ExpensesCategories;
+﻿using MoneyStat.Infra.Helpers;
 
-public class BaseExpensesCategoryNotFoundException : Exception
+namespace MoneyStat.WebApi.Model.Exceptions.ExpensesCategories;
+
+public class BaseExpensesCategoryNotFoundException : BadRequestException
 {
     public BaseExpensesCategoryNotFoundException(int categoryId)
         : base($"Основная категория с id {categoryId} не существует")

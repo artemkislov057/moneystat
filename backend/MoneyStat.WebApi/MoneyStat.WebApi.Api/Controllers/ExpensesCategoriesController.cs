@@ -46,23 +46,12 @@ public class ExpensesCategoriesController : ControllerBase
     public async Task<ActionResult<CategoryDto>> PostCategory([FromBody] PostCategoryRequestDto dto)
     {
         var userId = Guid.Parse(userManager.GetUserId(User));
-        try
+        var id = await service.AddCategory(dto.Name, dto.ParentId.Value, userId, dto.IsParentBase.Value);
+        return Created(string.Empty, new CategoryDto
         {
-            var id = await service.AddCategory(dto.Name, dto.ParentId.Value, userId, dto.IsParentBase.Value);
-            return Created(string.Empty, new CategoryDto
-            {
-                Id = id,
-                Name = dto.Name
-            });
-        }
-        catch (NotUsersCategoryException e)
-        {
-            return BadRequest(new ErrorDto { HttpCode = 400, Message = e.Message });
-        }
-        catch (BaseExpensesCategoryNotFoundException e)
-        {
-            return BadRequest(new ErrorDto { HttpCode = 400, Message = e.Message });
-        }
+            Id = id,
+            Name = dto.Name
+        });
     }
 
     /// <summary>
@@ -74,15 +63,7 @@ public class ExpensesCategoriesController : ControllerBase
     public async Task<ActionResult> DeleteCategory([FromRoute] int id)
     {
         var userId = Guid.Parse(userManager.GetUserId(User));
-        try
-        {
-            await service.DeleteCategory(id, userId);
-        }
-        catch (NotUsersCategoryException e)
-        {
-            return BadRequest(new ErrorDto { HttpCode = 400, Message = e.Message });
-        }
-
+        await service.DeleteCategory(id, userId);
         return Ok();
     }
 }
