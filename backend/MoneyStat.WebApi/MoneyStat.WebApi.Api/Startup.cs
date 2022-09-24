@@ -89,6 +89,8 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        app.UseMiddleware<ExceptionHandlerMiddleware>();
+        
         if (env.IsDevelopment())
         {
             app.UseSwagger();
@@ -105,10 +107,8 @@ public class Startup
         }
 
         app.UseHttpsRedirection();
-
         app.UseSpaStaticFiles();
 
-        app.UseMiddleware<ExceptionHandlerMiddleware>();
         app.UseRouting();
 
         app.UseAuthentication();
