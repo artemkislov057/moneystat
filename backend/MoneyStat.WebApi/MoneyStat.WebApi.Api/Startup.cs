@@ -100,7 +100,7 @@ public class Startup
                 options.RoutePrefix = "swagger";
             });
             app.UseCors(builder => builder
-                .WithOrigins(appConfiguration.GetSection("CorsOrigins").Get<string[]>())
+                .WithOrigins(appConfiguration.GetSection("CorsOrigins").Get<string[]>() ?? Array.Empty<string>())
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials());
