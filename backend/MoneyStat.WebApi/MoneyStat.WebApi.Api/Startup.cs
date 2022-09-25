@@ -14,17 +14,17 @@ namespace MoneyStat.WebApi.Api;
 
 public class Startup
 {
-    private readonly IConfiguration appConfiguration;
+    private readonly AppSettings appSettings;
     private const string ApiBase = "/api";
 
-    public Startup(IConfiguration appConfiguration)
+    public Startup(IConfiguration configuration)
     {
-        this.appConfiguration = appConfiguration;
+        appSettings = configuration.Get<AppSettings>();
     }
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var dbConnection = appConfiguration.GetConnectionString("MoneyStatDb");
+        var dbConnection = appSettings.GetConnectionString("MoneyStatDb");
         services.AddDbContext<MoneyStatDbContext>(options => options.UseSqlServer(dbConnection));
         services.AddIdentity<User, IdentityRole<Guid>>(configure =>
             {
@@ -76,8 +76,8 @@ public class Startup
             configure.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
             {
                 Version = "v1",
-                Title = $"{appConfiguration["AppName"]} API",
-                Description = $"Public API for project \"{appConfiguration["AppName"]}\""
+                Title = $"{appSettings.AppName} API",
+                Description = $"Public API for project \"{appSettings.AppName}\""
             });
             var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -100,7 +100,7 @@ public class Startup
                 options.RoutePrefix = "swagger";
             });
             app.UseCors(builder => builder
-                .WithOrigins(appConfiguration.GetSection("CorsOrigins").Get<string[]>() ?? Array.Empty<string>())
+                .WithOrigins(appSettings.CorsOrigins)
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials());
