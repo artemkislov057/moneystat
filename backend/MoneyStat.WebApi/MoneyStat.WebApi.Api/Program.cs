@@ -1,7 +1,7 @@
 using LightInject.Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using MoneyStat.DataBase;
-using MoneyStat.WebApi.Model.Services;
+using MoneyStat.WebApi.Model.Exceptions.ExpensesCategories;
 
 namespace MoneyStat.WebApi.Api;
 
@@ -19,7 +19,7 @@ public static class Program
     private static Type[] GetUsedTypes()
         => new[]
         {
-            typeof(ExpensesCategoriesService),
+            typeof(NotUsersCategoryException),
             typeof(MoneyStatDbContext)
         };
 }

@@ -6,8 +6,6 @@ namespace MoneyStat.DataBase;
 public interface IMoneyStatDbContext : IMoneyStatDbContextBase
 {
     DbSet<User> Users { get; set; }
-    DbSet<ExpensesCategory> ExpensesCategories { get; set; }
-    DbSet<BaseExpensesCategory> BaseExpensesCategories { get; set; }
     DbSet<Transaction> Transactions { get; set; }
     DbSet<TransactionCategory> TransactionCategories { get; set; }
 }
@@ -20,8 +18,6 @@ public sealed class MoneyStatDbContext : MoneyStatDbContextBase, IMoneyStatDbCon
     }
 
     public DbSet<User> Users { get; set; }
-    public DbSet<ExpensesCategory> ExpensesCategories { get; set; }
-    public DbSet<BaseExpensesCategory> BaseExpensesCategories { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<TransactionCategory> TransactionCategories { get; set; }
 }
