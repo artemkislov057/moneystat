@@ -52,6 +52,6 @@ public class TransactionCategoryController : ControllerBase
             .ToArrayAsync(cancellationToken);
 
         return Ok(categories.Select(
-            c => new TransactionCategoryDto(c.Name, Array.Empty<TransactionCategoryDto>(), null)));
+            c => new TransactionCategoryDto(c.Id, c.Name, Array.Empty<TransactionCategoryDto>(), null)));
     }
 }
