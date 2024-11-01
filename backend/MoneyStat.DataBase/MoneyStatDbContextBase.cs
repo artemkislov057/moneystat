@@ -7,7 +7,7 @@ namespace MoneyStat.DataBase;
 
 public interface IMoneyStatDbContextBase
 {
-    Task SaveChangesAsync();
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }
 
 public class MoneyStatDbContextBase : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IMoneyStatDbContextBase
@@ -18,8 +18,8 @@ public class MoneyStatDbContextBase : IdentityDbContext<User, IdentityRole<Guid>
         Database.EnsureCreated();
     }
     
-    public Task SaveChangesAsync()
+    public Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        return base.SaveChangesAsync();
+        return base.SaveChangesAsync(cancellationToken);
     }
 }
