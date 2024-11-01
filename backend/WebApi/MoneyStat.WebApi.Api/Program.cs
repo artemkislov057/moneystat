@@ -1,7 +1,7 @@
 using LightInject.Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using MoneyStat.DataBase;
-using MoneyStat.WebApi.Model.Exceptions.ExpensesCategories;
+using MoneyStat.WebApi.Domain.Exceptions.ExpensesCategories;
 
 namespace MoneyStat.WebApi.Api;
 

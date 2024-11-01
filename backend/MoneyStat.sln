@@ -1,16 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyStat.WebApi", "MoneyStat.WebApi", "{407B4AC8-48DD-4C59-BA95-4F4C1932D204}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{407B4AC8-48DD-4C59-BA95-4F4C1932D204}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.WebApi.Api", "MoneyStat.WebApi\MoneyStat.WebApi.Api\MoneyStat.WebApi.Api.csproj", "{D3D81341-A508-4843-B3D4-02773B2BAAAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.WebApi.Api", "WebApi\MoneyStat.WebApi.Api\MoneyStat.WebApi.Api.csproj", "{D3D81341-A508-4843-B3D4-02773B2BAAAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.DataBase", "MoneyStat.DataBase\MoneyStat.DataBase.csproj", "{585F9D8B-0063-4F59-A0AA-88F67D2294B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.WebApi.Model", "MoneyStat.WebApi\MoneyStat.WebApi.Model\MoneyStat.WebApi.Model.csproj", "{C9661A2A-83D1-4200-8408-914BDF01FB26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.WebApi.Domain", "WebApi\MoneyStat.WebApi.Domain\MoneyStat.WebApi.Domain.csproj", "{C9661A2A-83D1-4200-8408-914BDF01FB26}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyStat.Infra", "MoneyStat.Infra", "{BC782DE2-05F3-49AE-996B-DFF6EE4FD790}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{BC782DE2-05F3-49AE-996B-DFF6EE4FD790}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.Infra.Helpers", "MoneyStat.Infra\MoneyStat.Infra.Helpers\MoneyStat.Infra.Helpers.csproj", "{DE843596-60FB-417B-8DC3-DB60DD556CEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyStat.Infra.Helpers", "Infra\MoneyStat.Infra.Helpers\MoneyStat.Infra.Helpers.csproj", "{DE843596-60FB-417B-8DC3-DB60DD556CEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

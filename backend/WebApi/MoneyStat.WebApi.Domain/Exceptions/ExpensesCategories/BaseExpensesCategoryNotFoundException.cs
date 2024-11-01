@@ -1,6 +1,6 @@
 ﻿using MoneyStat.Infra.Helpers;
 
-namespace MoneyStat.WebApi.Model.Exceptions.ExpensesCategories;
+namespace MoneyStat.WebApi.Domain.Exceptions.ExpensesCategories;
 
 public class BaseExpensesCategoryNotFoundException : BadRequestException
 {
