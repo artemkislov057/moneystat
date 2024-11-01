@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.SpaServices;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
-using MoneyStat.DataBase;
-using MoneyStat.DataBase.Entities;
+using MoneyStat.DAL.DataBase;
+using MoneyStat.DAL.DataBase.Entities;
+using MoneyStat.DAL.Database.SqlServer;
 using MoneyStat.WebApi.Api.Middlewares;
 
 namespace MoneyStat.WebApi.Api;
@@ -25,7 +26,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         var dbConnection = appSettings.GetConnectionString("MoneyStatDb");
-        services.AddDbContext<MoneyStatDbContext>(options => options.UseSqlServer(dbConnection));
+        services.AddDbContext<MoneyStatDbContextSqlServer>(options => options.UseSqlServer(dbConnection));
         services.AddIdentity<User, IdentityRole<Guid>>(configure =>
             {
                 configure.Password.RequiredLength = 1;
@@ -34,7 +35,7 @@ public class Startup
                 configure.Password.RequireLowercase = false;
                 configure.Password.RequireDigit = false;
             })
-            .AddEntityFrameworkStores<MoneyStatDbContext>();
+            .AddEntityFrameworkStores<MoneyStatDbContextSqlServer>();
         services.AddAuthentication();
         services.AddAuthorization();
         services.ConfigureApplicationCookie(configure =>
@@ -89,7 +90,7 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        using (var dbContext = app.ApplicationServices.GetService<MoneyStatDbContext>()!)
+        using (var dbContext = app.ApplicationServices.GetService<MoneyStatDbContextSqlServer>()!)
         {
             dbContext.Database.Migrate();
         }

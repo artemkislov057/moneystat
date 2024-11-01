@@ -1,4 +1,4 @@
-﻿namespace MoneyStat.DataBase.Entities;
+﻿namespace MoneyStat.DAL.DataBase.Entities;
 
 public class TransactionCategory
 {

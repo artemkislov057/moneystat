@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MoneyStat.DataBase.Entities;
+using MoneyStat.DAL.DataBase.Entities;
 
-namespace MoneyStat.DataBase;
+namespace MoneyStat.DAL.DataBase;
 
 public interface IMoneyStatDbContext
 {
@@ -14,7 +14,7 @@ public interface IMoneyStatDbContext
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }
 
-public sealed class MoneyStatDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IMoneyStatDbContext
+public abstract class MoneyStatDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IMoneyStatDbContext
 {
     public MoneyStatDbContext(DbContextOptions options)
         : base(options)

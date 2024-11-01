@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace MoneyStat.DataBase.Entities;
+namespace MoneyStat.DAL.DataBase.Entities;
 
 public sealed class User : IdentityUser<Guid>
 {

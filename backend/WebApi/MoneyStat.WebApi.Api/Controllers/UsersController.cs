@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyStat.DataBase.Entities;
+using MoneyStat.DAL.DataBase.Entities;
 using MoneyStat.Infra.Helpers;
 using MoneyStat.WebApi.Api.Attributes;
 using MoneyStat.WebApi.Api.Dto.Common;

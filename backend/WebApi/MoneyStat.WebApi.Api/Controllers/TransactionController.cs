@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MoneyStat.DataBase;
-using MoneyStat.DataBase.Entities;
+using MoneyStat.DAL.DataBase;
+using MoneyStat.DAL.DataBase.Entities;
 using MoneyStat.WebApi.Api.Attributes;
 using MoneyStat.WebApi.Api.Dto.Transactions;
 

@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MoneyStat.DataBase;
+using MoneyStat.DAL.Database.SqlServer;
 
 #nullable disable
 
-namespace MoneyStat.DataBase.Migrations
+namespace MoneyStat.DAL.Database.SqlServer.Migrations
 {
-    [DbContext(typeof(MoneyStatDbContext))]
-    partial class MoneyStatDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MoneyStatDbContextSqlServer))]
+    [Migration("20241101184346_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,7 +155,7 @@ namespace MoneyStat.DataBase.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MoneyStat.DataBase.Entities.Transaction", b =>
+            modelBuilder.Entity("MoneyStat.DAL.DataBase.Entities.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -182,7 +184,7 @@ namespace MoneyStat.DataBase.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("MoneyStat.DataBase.Entities.TransactionCategory", b =>
+            modelBuilder.Entity("MoneyStat.DAL.DataBase.Entities.TransactionCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +205,7 @@ namespace MoneyStat.DataBase.Migrations
                     b.ToTable("TransactionCategories");
                 });
 
-            modelBuilder.Entity("MoneyStat.DataBase.Entities.User", b =>
+            modelBuilder.Entity("MoneyStat.DAL.DataBase.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -280,7 +282,7 @@ namespace MoneyStat.DataBase.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("MoneyStat.DataBase.Entities.User", null)
+                    b.HasOne("MoneyStat.DAL.DataBase.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -289,7 +291,7 @@ namespace MoneyStat.DataBase.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("MoneyStat.DataBase.Entities.User", null)
+                    b.HasOne("MoneyStat.DAL.DataBase.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -304,7 +306,7 @@ namespace MoneyStat.DataBase.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MoneyStat.DataBase.Entities.User", null)
+                    b.HasOne("MoneyStat.DAL.DataBase.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -313,7 +315,7 @@ namespace MoneyStat.DataBase.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("MoneyStat.DataBase.Entities.User", null)
+                    b.HasOne("MoneyStat.DAL.DataBase.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
