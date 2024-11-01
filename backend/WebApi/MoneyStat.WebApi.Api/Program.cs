@@ -1,8 +1,7 @@
 using LightInject.Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
-using MoneyStat.DAL.DataBase;
 using MoneyStat.DAL.DataBase.Entities;
-using MoneyStat.DAL.Database.SqlServer;
+using MoneyStat.DAL.Database.Postgres;
 using MoneyStat.WebApi.Domain.Exceptions.ExpensesCategories;
 
 namespace MoneyStat.WebApi.Api;
@@ -23,6 +22,6 @@ public static class Program
         {
             typeof(NotUsersCategoryException),
             typeof(User),
-            typeof(MoneyStatDbContextSqlServer)
+            typeof(MoneyStatDbContextPostgres)
         };
 }

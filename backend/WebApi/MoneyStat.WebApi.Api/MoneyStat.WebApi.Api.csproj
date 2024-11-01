@@ -13,13 +13,11 @@
         <PackageReference Include="LightInject.Microsoft.AspNetCore.Hosting" Version="2.3.5" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.35" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.35" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\DAL\MoneyStat.DAL.Database.SqlServer\MoneyStat.DAL.Database.SqlServer.csproj" />
-        <ProjectReference Include="..\..\DAL\MoneyStat.DAL.DataBase\MoneyStat.DAL.DataBase.csproj" />
+        <ProjectReference Include="..\..\DAL\MoneyStat.DAL.Database.Postgres\MoneyStat.DAL.Database.Postgres.csproj" />
         <ProjectReference Include="..\..\Infra\MoneyStat.Infra.Helpers\MoneyStat.Infra.Helpers.csproj" />
         <ProjectReference Include="..\MoneyStat.WebApi.Domain\MoneyStat.WebApi.Domain.csproj" />
     </ItemGroup>
