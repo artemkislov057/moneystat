@@ -9,6 +9,7 @@ public interface IMoneyStatDbContext : IMoneyStatDbContextBase
     DbSet<ExpensesCategory> ExpensesCategories { get; set; }
     DbSet<BaseExpensesCategory> BaseExpensesCategories { get; set; }
     DbSet<Transaction> Transactions { get; set; }
+    DbSet<TransactionCategory> TransactionCategories { get; set; }
 }
 
 public sealed class MoneyStatDbContext : MoneyStatDbContextBase, IMoneyStatDbContext
@@ -22,4 +23,5 @@ public sealed class MoneyStatDbContext : MoneyStatDbContextBase, IMoneyStatDbCon
     public DbSet<ExpensesCategory> ExpensesCategories { get; set; }
     public DbSet<BaseExpensesCategory> BaseExpensesCategories { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<TransactionCategory> TransactionCategories { get; set; }
 }
