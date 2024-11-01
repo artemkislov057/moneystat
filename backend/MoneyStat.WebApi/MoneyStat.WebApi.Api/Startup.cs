@@ -89,6 +89,11 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        using (var dbContext = app.ApplicationServices.GetService<MoneyStatDbContext>()!)
+        {
+            dbContext.Database.Migrate();
+        }
+
         app.UseMiddleware<ExceptionHandlerMiddleware>();
         
         if (env.IsDevelopment())

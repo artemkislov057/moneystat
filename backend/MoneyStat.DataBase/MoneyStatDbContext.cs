@@ -1,18 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MoneyStat.DataBase.Entities;
 
 namespace MoneyStat.DataBase;
 
-public interface IMoneyStatDbContext : IMoneyStatDbContextBase
+public interface IMoneyStatDbContext
 {
     DbSet<User> Users { get; set; }
     DbSet<Transaction> Transactions { get; set; }
     DbSet<TransactionCategory> TransactionCategories { get; set; }
+    
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }
 
-public sealed class MoneyStatDbContext : MoneyStatDbContextBase, IMoneyStatDbContext
+public sealed class MoneyStatDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>, IMoneyStatDbContext
 {
-    public MoneyStatDbContext(DbContextOptions<MoneyStatDbContext> options)
+    public MoneyStatDbContext(DbContextOptions options)
         : base(options)
     {
     }
@@ -20,4 +24,9 @@ public sealed class MoneyStatDbContext : MoneyStatDbContextBase, IMoneyStatDbCon
     public DbSet<User> Users { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<TransactionCategory> TransactionCategories { get; set; }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        await base.SaveChangesAsync(cancellationToken);
+    }
 }

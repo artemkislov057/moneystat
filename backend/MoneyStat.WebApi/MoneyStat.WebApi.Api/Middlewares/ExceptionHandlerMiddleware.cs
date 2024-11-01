@@ -8,10 +8,10 @@ public class ExceptionHandlerMiddleware
 {
     private readonly RequestDelegate next;
 
-    public ExceptionHandlerMiddleware(RequestDelegate next) 
+    public ExceptionHandlerMiddleware(RequestDelegate next)
         => this.next = next;
 
-    public async Task Invoke(HttpContext context)
+    public async Task Invoke(HttpContext context, ILogger<ExceptionHandlerMiddleware> logger)
     {
         try
         {
@@ -33,6 +33,8 @@ public class ExceptionHandlerMiddleware
                 HttpCode = 500,
                 Message = "Сервис временно недоступен"
             };
+
+            logger.LogError(e, e.Message);
             await context.WriteJsonResponse(500, dto);
         }
     }
