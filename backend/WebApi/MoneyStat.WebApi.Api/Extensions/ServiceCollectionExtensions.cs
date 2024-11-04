@@ -28,7 +28,7 @@ public static class ServiceCollectionExtensions
 
     public static void AddPostgresDbContext(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        var connectionString = configuration.GetConnectionString("MoneyStatDb");
         services.AddDbContext<MoneyStatDbContextPostgres>(options => options.UseNpgsql(connectionString));
     }
 
