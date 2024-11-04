@@ -1,11 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 using LightInject;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SpaServices;
-using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Net.Http.Headers;
 using MoneyStat.DAL.DataBase.Entities;
 using MoneyStat.DAL.Database.Postgres;
 using MoneyStat.WebApi.Api.Middlewares;
@@ -83,19 +81,22 @@ public class Startup
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             configure.IncludeXmlComments(xmlPath);
         });
-        services.AddSpaStaticFiles(configure => { configure.RootPath = "wwwroot"; });
         services.AddCors();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        using (var dbContext = app.ApplicationServices.GetService<MoneyStatDbContextPostgres>()!)
-        {
-            dbContext.Database.Migrate();
-        }
+        // using (var dbContext = app.ApplicationServices.GetService<MoneyStatDbContextPostgres>()!)
+        // {
+        //     dbContext.Database.Migrate();
+        // }
 
+        app.UseForwardedHeaders(new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+        });
         app.UseMiddleware<ExceptionHandlerMiddleware>();
-        
+
         if (env.IsDevelopment())
         {
             app.UseSwagger();
@@ -111,17 +112,12 @@ public class Startup
                 .AllowCredentials());
         }
 
-        app.UseHttpsRedirection();
-        app.UseSpaStaticFiles();
-
         app.UseRouting();
 
         app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-        app.UseMiddleware<SpaNotFoundMiddleware>(ApiBase);
-        app.UseSpa(ConfigureSpa);
     }
 
     public void ConfigureContainer(IServiceContainer container)
@@ -132,23 +128,6 @@ public class Startup
         {
             container.RegisterAssembly(assembly, () => new PerRequestLifeTime(),
                 (serviceType, implementationType) => serviceType.IsInterface);
-        }
-    }
-
-    private static void ConfigureSpa(ISpaBuilder spa)
-    {
-        spa.Options.DefaultPageStaticFileOptions = new StaticFileOptions
-            { OnPrepareResponse = DisableCacheIndexPage };
-
-        static void DisableCacheIndexPage(StaticFileResponseContext responseContext)
-        {
-            if (responseContext.File.Name != "index.html")
-                return;
-
-            var headers = responseContext.Context.Response.GetTypedHeaders();
-            var cacheControlHeaderValue = new CacheControlHeaderValue { NoStore = true, NoCache = true };
-
-            headers.CacheControl = cacheControlHeaderValue;
         }
     }
 }
