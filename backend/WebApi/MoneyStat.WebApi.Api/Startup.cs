@@ -86,10 +86,10 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        // using (var dbContext = app.ApplicationServices.GetService<MoneyStatDbContextPostgres>()!)
-        // {
-        //     dbContext.Database.Migrate();
-        // }
+        using (var dbContext = app.ApplicationServices.GetService<MoneyStatDbContextPostgres>()!)
+        {
+            dbContext.Database.Migrate();
+        }
 
         app.UseForwardedHeaders(new ForwardedHeadersOptions
         {
