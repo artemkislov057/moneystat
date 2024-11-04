@@ -83,7 +83,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || appSettings.UseSwagger)
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
