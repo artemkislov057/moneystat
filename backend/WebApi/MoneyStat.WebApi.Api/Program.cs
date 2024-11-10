@@ -7,6 +7,8 @@ Assembly.GetExecutingAssembly().LoadReferenceAssembliesByPredicate(a => a.FullNa
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseLightInject(serviceRegistry => serviceRegistry.RegisterFrom<HostCompositionRoot>());
+builder.Configuration
+    .AddJsonFile($"local.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
 var configuration = builder.Configuration;
 var appSettings = configuration.Get<AppSettings>() ?? throw new InvalidOperationException();
