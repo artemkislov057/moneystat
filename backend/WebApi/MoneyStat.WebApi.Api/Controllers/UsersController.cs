@@ -41,7 +41,11 @@ public sealed class UsersController : ControllerBase
         }
 
         await signInManager.SignInAsync(entity, true);
-        var createdUser = TypeMapper<User, UserResultDto>.MapForward(entity);
+        var createdUser = new UserResultDto
+        {
+            Email = entity.Email
+        };
+
         return Created("api/users", createdUser);
     }
 
@@ -89,7 +93,16 @@ public sealed class UsersController : ControllerBase
     public async Task<ActionResult<UserResultDto>> GetUser()
     {
         var entity = await userManager.GetUserAsync(User);
-        var result = TypeMapper<User, UserResultDto>.MapForward(entity);
+        if (entity == null)
+        {
+            return NotFound();
+        }
+
+        var result = new UserResultDto
+        {
+            Email = entity.Email
+        };
+
         return Ok(result);
     }
 }
